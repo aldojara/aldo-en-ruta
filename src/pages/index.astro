@@ -1,5 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const baseUrl = import.meta.env.BASE_URL.endsWith('/') 
+  ? import.meta.env.BASE_URL.slice(0, -1) 
+  : import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title="Aldo en Ruta | El Perú no solo se visita. Se atraviesa." activeNav="Inicio">
@@ -21,11 +25,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </p>
 
       <div class="hero-actions">
-        <a href="/rutas/piloto/rapida" class="btn-outline-gold">
+        <a href={`${baseUrl}/rutas/piloto/rapida`} class="btn-outline-gold">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
           Ver experiencia rápida
         </a>
-        <a href="/rutas/piloto" class="btn-gold">
+        <a href={`${baseUrl}/rutas/piloto`} class="btn-gold">
           Explorar la ruta completa
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
@@ -42,8 +46,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
           </div>
           <div>
-            <div class="metric-value">11.6 km</div>
-            <div class="metric-label">Distancia</div>
+            <div class="metric-value">11.62 km</div>
+            <div class="metric-label">Distancia real</div>
           </div>
         </div>
 
@@ -53,7 +57,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </div>
           <div>
             <div class="metric-value">12 min</div>
-            <div class="metric-label">Duración</div>
+            <div class="metric-label">Duración real</div>
           </div>
         </div>
 
@@ -90,7 +94,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
-  <!-- Section: Map Preview -->
+  <!-- Section: Map Preview with Real GPX & 3 Animation Modes -->
   <section class="section-map">
     <div class="container">
       <div class="section-header">
@@ -101,12 +105,23 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
 
       <div class="map-card glass-panel">
+        <!-- Interactive Animation Toolbar -->
+        <div class="map-anim-toolbar">
+          <span class="gpx-badge">📡 GPX REAL: 744 PUNTOS GPS</span>
+          <div class="anim-btn-group">
+            <button class="anim-btn" id="home-btn-fly">🎥 Volar cámara 3D</button>
+            <button class="anim-btn" id="home-btn-orbit">🔄 Modo Órbita Drone 360°</button>
+            <button class="anim-btn" id="home-btn-chase">🏎️ Simular Recorrido GPX</button>
+          </div>
+        </div>
+
         <div id="home-map" class="map-container"></div>
+        
         <div class="map-overlay-legend">
-          <div class="legend-item"><span class="dot available"></span> Ruta disponible</div>
+          <div class="legend-item"><span class="dot available"></span> Ruta disponible (Tramo Piloto 11.6 km)</div>
           <div class="legend-item"><span class="dot upcoming"></span> Próximamente</div>
           <div class="legend-item"><span class="dot planning"></span> En planificación</div>
-          <a href="/rutas" class="map-link-all">Ver todas las rutas →</a>
+          <a href={`${baseUrl}/rutas`} class="map-link-all">Ver todas las rutas →</a>
         </div>
       </div>
     </div>
@@ -175,7 +190,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <div class="preview-badge-360">
             <span>360°</span>
           </div>
-          <a href="/rutas/piloto" class="play-overlay">
+          <a href={`${baseUrl}/rutas/piloto`} class="play-overlay">
             <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" fill="rgba(0,0,0,0.6)"/><polygon points="10 8 16 12 10 16 10 8" fill="#D4AF37"/></svg>
           </a>
         </div>
@@ -188,7 +203,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </p>
 
           <div class="featured-metrics">
-            <div class="f-metric"><strong>11.6 km</strong> Distancia</div>
+            <div class="f-metric"><strong>11.62 km</strong> Distancia</div>
             <div class="f-metric"><strong>12 min</strong> Duración</div>
             <div class="f-metric"><strong>3,901 m</strong> Altitud máx.</div>
             <div class="f-metric"><strong>Moderada</strong> Conducción</div>
@@ -202,7 +217,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <span class="badge badge-dark">Aventura</span>
           </div>
 
-          <a href="/rutas/piloto" class="btn-gold btn-full">
+          <a href={`${baseUrl}/rutas/piloto`} class="btn-gold btn-full">
             Entrar a la ruta
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
@@ -221,9 +236,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
   }
 
-  .hero-container {
-    max-width: 800px;
-  }
+  .hero-container { max-width: 800px; }
 
   .collection-badge {
     display: inline-flex;
@@ -248,11 +261,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     box-shadow: 0 0 6px var(--gold-primary);
   }
 
-  .hero-title {
-    font-size: 3.5rem;
-    color: var(--text-main);
-    margin-bottom: 1.25rem;
-  }
+  .hero-title { font-size: 3.5rem; color: var(--text-main); margin-bottom: 1.25rem; }
 
   .hero-description {
     font-size: 1.15rem;
@@ -262,11 +271,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     max-width: 620px;
   }
 
-  .hero-actions {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
 
   /* Metrics Section */
   .metrics-section {
@@ -283,11 +288,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     gap: 1.5rem;
   }
 
-  .metric-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
+  .metric-item { display: flex; align-items: center; gap: 1rem; }
 
   .metric-icon {
     color: var(--gold-primary);
@@ -297,45 +298,63 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     border: 1px solid var(--border-gold);
   }
 
-  .metric-value {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--text-main);
-  }
-
-  .metric-label {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-  }
+  .metric-value { font-size: 1.1rem; font-weight: 700; color: var(--text-main); }
+  .metric-label { font-size: 0.75rem; color: var(--text-muted); }
 
   /* Map Section */
-  .section-map {
-    margin-bottom: 5rem;
-  }
-
-  .section-title {
-    font-size: 2.2rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .section-sub {
-    color: var(--text-sub);
-    font-size: 1rem;
-    margin-bottom: 2rem;
-  }
+  .section-map { margin-bottom: 5rem; }
+  .section-title { font-size: 2.2rem; margin-bottom: 0.5rem; }
+  .section-sub { color: var(--text-sub); font-size: 1rem; margin-bottom: 2rem; }
 
   .map-card {
     position: relative;
     overflow: hidden;
-    height: 480px;
+    height: 540px;
     border-radius: var(--radius-lg);
   }
 
-  .map-container {
-    width: 100%;
-    height: 100%;
-    background: #0b111e;
+  .map-anim-toolbar {
+    position: absolute;
+    top: 1.25rem;
+    left: 1.25rem;
+    right: 1.25rem;
+    z-index: 20;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(8, 12, 20, 0.85);
+    backdrop-filter: blur(14px);
+    border: 1px solid var(--border-gold);
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--radius-md);
   }
+
+  .gpx-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--gold-primary);
+    letter-spacing: 0.05em;
+  }
+
+  .anim-btn-group { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+  .anim-btn {
+    font-size: 0.78rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: var(--radius-full);
+    background: var(--gold-subtle);
+    border: 1px solid var(--border-gold);
+    color: var(--gold-primary);
+    transition: var(--transition-fast);
+  }
+
+  .anim-btn:hover {
+    background: var(--gold-primary);
+    color: #000;
+    box-shadow: 0 0 12px var(--gold-glow);
+  }
+
+  .map-container { width: 100%; height: 100%; background: #0b111e; }
 
   .map-overlay-legend {
     position: absolute;
@@ -350,35 +369,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     align-items: center;
     gap: 1.5rem;
     font-size: 0.85rem;
+    z-index: 20;
   }
 
-  .legend-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--text-sub);
-  }
+  .legend-item { display: flex; align-items: center; gap: 0.5rem; color: var(--text-sub); }
 
-  .dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-  }
-
+  .dot { width: 8px; height: 8px; border-radius: 50%; }
   .dot.available { background: var(--gold-primary); box-shadow: 0 0 6px var(--gold-primary); }
   .dot.upcoming { background: #3b82f6; }
   .dot.planning { background: #6b7280; }
 
-  .map-link-all {
-    color: var(--gold-primary);
-    font-weight: 600;
-    margin-left: auto;
-  }
+  .map-link-all { color: var(--gold-primary); font-weight: 600; margin-left: auto; }
 
   /* Categories Grid */
-  .section-categories {
-    margin-bottom: 5rem;
-  }
+  .section-categories { margin-bottom: 5rem; }
 
   .categories-grid {
     display: grid;
@@ -410,35 +414,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     background: linear-gradient(180deg, rgba(8, 12, 20, 0.2) 0%, rgba(8, 12, 20, 0.95) 100%);
   }
 
-  .category-content {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 1.25rem;
-
-  .cat-icon {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .cat-title {
-    font-family: var(--font-title);
-    font-size: 1.25rem;
-    color: var(--text-main);
-    margin-bottom: 0.25rem;
-  }
-
-  .cat-desc {
-    font-size: 0.78rem;
-    color: var(--text-sub);
-    line-height: 1.4;
-  }
+  .category-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.25rem; }
+  .cat-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+  .cat-title { font-family: var(--font-title); font-size: 1.25rem; color: var(--text-main); margin-bottom: 0.25rem; }
+  .cat-desc { font-size: 0.78rem; color: var(--text-sub); line-height: 1.4; }
 
   /* Featured Route */
-  .section-featured {
-    margin-bottom: 6rem;
-  }
+  .section-featured { margin-bottom: 6rem; }
 
   .featured-card {
     display: grid;
@@ -448,18 +430,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     align-items: center;
   }
 
-  .featured-preview {
-    position: relative;
-    height: 380px;
-    border-radius: var(--radius-md);
-    overflow: hidden;
-  }
-
-  .featured-preview img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+  .featured-preview { position: relative; height: 380px; border-radius: var(--radius-md); overflow: hidden; }
+  .featured-preview img { width: 100%; height: 100%; object-fit: cover; }
 
   .preview-badge-360 {
     position: absolute;
@@ -484,20 +456,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     transition: var(--transition-fast);
   }
 
-  .play-overlay:hover {
-    background: rgba(0, 0, 0, 0.1);
-  }
-
-  .featured-title {
-    font-size: 2.2rem;
-    margin: 0.75rem 0;
-  }
-
-  .featured-desc {
-    color: var(--text-sub);
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-  }
+  .play-overlay:hover { background: rgba(0, 0, 0, 0.1); }
+  .featured-title { font-size: 2.2rem; margin: 0.75rem 0; }
+  .featured-desc { color: var(--text-sub); line-height: 1.6; margin-bottom: 1.5rem; }
 
   .featured-metrics {
     display: grid;
@@ -511,27 +472,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     color: var(--text-sub);
   }
 
-  .featured-metrics strong {
-    display: block;
-    color: var(--text-main);
-    font-size: 1rem;
-  }
-
-  .featured-tags {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
-  }
-
-  .btn-full {
-    width: 100%;
-  }
+  .featured-metrics strong { display: block; color: var(--text-main); font-size: 1rem; }
+  .featured-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+  .btn-full { width: 100%; }
 
   @media (max-width: 1024px) {
     .metrics-grid { grid-template-columns: repeat(3, 1fr); }
     .categories-grid { grid-template-columns: repeat(3, 1fr); }
     .featured-card { grid-template-columns: 1fr; }
+    .map-anim-toolbar { flex-direction: column; gap: 0.5rem; }
   }
 
   @media (max-width: 640px) {
@@ -544,65 +493,162 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <script>
   import maplibregl from 'maplibre-gl';
 
+  let map: any = null;
+  let vehicleMarker: any = null;
+  let isOrbiting = false;
+  let orbitAnimFrame: any = null;
+  let isSimulationActive = false;
+
   document.addEventListener('DOMContentLoaded', () => {
     const mapContainer = document.getElementById('home-map');
     if (!mapContainer) return;
 
-    const map = new maplibregl.Map({
+    const baseUrl = import.meta.env.BASE_URL.endsWith('/') 
+      ? import.meta.env.BASE_URL.slice(0, -1) 
+      : import.meta.env.BASE_URL;
+
+    map = new maplibregl.Map({
       container: 'home-map',
       style: 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json',
-      center: [-75.0152, -9.1900], // Center of Peru
-      zoom: 5.2,
+      center: [-74.2950, -13.2500], // Centered on real Ayacucho GPX route
+      zoom: 12.5,
+      pitch: 55,
+      bearing: -20,
       attributionControl: false
     });
 
-    map.on('load', () => {
-      // Mock pilot route geometry in Peru Andes
-      map.addSource('route-pilot', {
-        'type': 'geojson',
-        'data': {
-          'type': 'Feature',
-          'properties': {},
-          'geometry': {
-            'type': 'LineString',
-            'coordinates': [
-              [-77.0428, -12.0464],
-              [-76.7000, -11.8000],
-              [-76.4000, -11.6000],
-              [-76.0000, -11.4000],
-              [-75.5000, -11.1000]
-            ]
+    map.on('load', async () => {
+      try {
+        const response = await fetch(`${baseUrl}/routes/piloto/route.geojson`);
+        const geojson = await response.json();
+
+        map.addSource('home-real-gpx', {
+          'type': 'geojson',
+          'data': geojson
+        });
+
+        // Glowing outer route line
+        map.addLayer({
+          'id': 'home-gpx-glow',
+          'type': 'line',
+          'source': 'home-real-gpx',
+          'layout': { 'line-join': 'round', 'line-cap': 'round' },
+          'paint': {
+            'line-color': '#D4AF37',
+            'line-width': 8,
+            'line-opacity': 0.35,
+            'line-blur': 3
           }
+        });
+
+        // Main line
+        map.addLayer({
+          'id': 'home-gpx-line',
+          'type': 'line',
+          'source': 'home-real-gpx',
+          'layout': { 'line-join': 'round', 'line-cap': 'round' },
+          'paint': {
+            'line-color': '#E5C158',
+            'line-width': 4
+          }
+        });
+
+        const coordinates = geojson.features[0].geometry.coordinates;
+
+        // Vehicle Marker
+        const markerEl = document.createElement('div');
+        markerEl.className = 'pulse-home-marker';
+        markerEl.style.width = '20px';
+        markerEl.style.height = '20px';
+        markerEl.style.backgroundColor = '#D4AF37';
+        markerEl.style.borderRadius = '50%';
+        markerEl.style.border = '3px solid #FFF';
+        markerEl.style.boxShadow = '0 0 20px #D4AF37';
+
+        vehicleMarker = new maplibregl.Marker(markerEl)
+          .setLngLat(coordinates[0])
+          .addTo(map);
+
+        // 1. Button: Volar cámara 3D
+        const flyBtn = document.getElementById('home-btn-fly');
+        if (flyBtn) {
+          flyBtn.addEventListener('click', () => {
+            map.flyTo({
+              center: coordinates[Math.floor(coordinates.length / 2)],
+              zoom: 13.5,
+              pitch: 65,
+              bearing: 90,
+              duration: 3000,
+              essential: true
+            });
+          });
         }
-      });
 
-      map.addLayer({
-        'id': 'route-pilot-line',
-        'type': 'line',
-        'source': 'route-pilot',
-        'layout': {
-          'line-join': 'round',
-          'line-cap': 'round'
-        },
-        'paint': {
-          'line-color': '#D4AF37',
-          'line-width': 4,
-          'line-blur': 1
+        // 2. Button: Modo Órbita Drone 360°
+        const orbitBtn = document.getElementById('home-btn-orbit');
+        if (orbitBtn) {
+          orbitBtn.addEventListener('click', () => {
+            if (isOrbiting) {
+              isOrbiting = false;
+              if (orbitAnimFrame) cancelAnimationFrame(orbitAnimFrame);
+              orbitBtn.innerText = '🔄 Modo Órbita Drone 360°';
+            } else {
+              isOrbiting = true;
+              orbitBtn.innerText = '⏹ Detener Órbita';
+              rotateDrone();
+            }
+          });
         }
-      });
 
-      // Marker for Pilot Route
-      const el = document.createElement('div');
-      el.className = 'custom-marker';
-      el.style.backgroundColor = '#D4AF37';
-      el.style.width = '16px';
-      el.style.height = '16px';
-      el.style.borderRadius = '50%';
-      el.style.boxShadow = '0 0 15px #D4AF37';
+        function rotateDrone() {
+          if (!isOrbiting) return;
+          map.setBearing((map.getBearing() + 0.25) % 360);
+          orbitAnimFrame = requestAnimationFrame(rotateDrone);
+        }
 
-      new maplibregl.Marker(el)
-        .setLngLat([-76.4000, -11.6000])
-        .addTo(map);
+        // 3. Button: Simular Recorrido GPX
+        const chaseBtn = document.getElementById('home-btn-chase');
+        if (chaseBtn) {
+          chaseBtn.addEventListener('click', () => {
+            if (isSimulationActive) {
+              isSimulationActive = false;
+              chaseBtn.innerText = '🏎️ Simular Recorrido GPX';
+            } else {
+              isSimulationActive = true;
+              chaseBtn.innerText = '⏹ Detener Recorrido';
+              runGPXSimulation(coordinates);
+            }
+          });
+        }
+
+        function runGPXSimulation(coords: number[][]) {
+          let idx = 0;
+          function step() {
+            if (!isSimulationActive || idx >= coords.length) {
+              isSimulationActive = false;
+              if (chaseBtn) chaseBtn.innerText = '🏎️ Simular Recorrido GPX';
+              return;
+            }
+
+            const c = coords[idx];
+            vehicleMarker.setLngLat([c[0], c[1]]);
+
+            map.easeTo({
+              center: [c[0], c[1]],
+              zoom: 13.8,
+              pitch: 65,
+              duration: 100
+            });
+
+            idx += 2;
+            setTimeout(step, 100);
+          }
+          step();
+        }
+
+      } catch (err) {
+        console.error('Error loading real GPX GeoJSON in Home:', err);
+      }
     });
   });
 </script>
