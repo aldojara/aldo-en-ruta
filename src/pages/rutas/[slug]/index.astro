@@ -64,11 +64,14 @@ const { slug } = Astro.params;
           </div>
         </div>
 
-        <!-- Right Column: Interactive MapLibre Map with 3D Animations -->
+        <!-- Right Column: Interactive MapLibre Map with Advanced Animations -->
         <div class="map-col glass-panel">
           <div class="map-toolbar">
             <span class="map-status-badge">📡 GPX REAL: 744 PUNTOS GPS</span>
-            <button class="map-anim-btn" id="btn-animate-cam">🎥 Volar cámara 3D</button>
+            <div class="anim-controls">
+              <button class="map-anim-btn" id="btn-orbit-cam">🔄 Modo Órbita Drone 360°</button>
+              <button class="map-anim-btn" id="btn-chase-cam">🏎️ Simular Recorrido GPX</button>
+            </div>
           </div>
 
           <div id="route-detail-map" class="route-detail-map"></div>
@@ -207,6 +210,11 @@ const { slug } = Astro.params;
     margin-bottom: 0.75rem;
   }
 
+  .anim-controls {
+    display: flex;
+    gap: 0.5rem;
+  }
+
   .map-status-badge {
     font-size: 0.72rem;
     font-weight: 700;
@@ -221,6 +229,12 @@ const { slug } = Astro.params;
     background: var(--gold-subtle);
     border: 1px solid var(--border-gold);
     color: var(--gold-primary);
+    transition: var(--transition-fast);
+  }
+
+  .map-anim-btn:hover {
+    background: var(--gold-primary);
+    color: #000;
   }
 
   .route-detail-map {
@@ -292,24 +306,25 @@ const { slug } = Astro.params;
 
   let map: any = null;
   let currentMarker: any = null;
+  let isOrbiting = false;
+  let orbitAnimationFrame: any = null;
+  let isSimulationRunning = false;
 
   document.addEventListener('DOMContentLoaded', () => {
     const mapEl = document.getElementById('route-detail-map');
     if (!mapEl) return;
 
-    // Base URL helper
     const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       ? import.meta.env.BASE_URL.slice(0, -1)
       : import.meta.env.BASE_URL;
 
-    // Initialize MapLibre GL JS centered on the GPX coordinates in Peru
     map = new maplibregl.Map({
       container: 'route-detail-map',
       style: 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json',
       center: [-74.2950, -13.2500],
       zoom: 12.2,
-      pitch: 50, // 3D Camera Tilt
-      bearing: -20, // Camera rotation
+      pitch: 55,
+      bearing: -20,
       attributionControl: false
     });
 
@@ -323,7 +338,6 @@ const { slug } = Astro.params;
           'data': geojson
         });
 
-        // Glowing outer route line
         map.addLayer({
           'id': 'real-gpx-glow',
           'type': 'line',
@@ -332,12 +346,11 @@ const { slug } = Astro.params;
           'paint': {
             'line-color': '#D4AF37',
             'line-width': 8,
-            'line-opacity': 0.3,
+            'line-opacity': 0.35,
             'line-blur': 3
           }
         });
 
-        // Main sharp route line
         map.addLayer({
           'id': 'real-gpx-line',
           'type': 'line',
@@ -349,15 +362,9 @@ const { slug } = Astro.params;
           }
         });
 
-        // Fit map bounds to the real GPX route
         const coordinates = geojson.features[0].geometry.coordinates;
-        const bounds = coordinates.reduce((b: any, coord: any) => {
-          return b.extend(coord);
-        }, new maplibregl.LngLatBounds(coordinates[0], coordinates[0]));
 
-        map.fitBounds(bounds, { padding: 40, duration: 1500 });
-
-        // Add pulse vehicle marker on start point
+        // Vehicle Marker
         const markerEl = document.createElement('div');
         markerEl.className = 'pulse-vehicle-marker';
         markerEl.style.width = '20px';
@@ -365,25 +372,80 @@ const { slug } = Astro.params;
         markerEl.style.backgroundColor = '#D4AF37';
         markerEl.style.borderRadius = '50%';
         markerEl.style.border = '3px solid #FFF';
-        markerEl.style.boxShadow = '0 0 18px #D4AF37';
+        markerEl.style.boxShadow = '0 0 20px #D4AF37';
 
         currentMarker = new maplibregl.Marker(markerEl)
           .setLngLat(coordinates[0])
           .addTo(map);
 
-        // 3D Camera Fly Button handler
-        const animBtn = document.getElementById('btn-animate-cam');
-        if (animBtn) {
-          animBtn.addEventListener('click', () => {
-            map.flyTo({
-              center: coordinates[Math.floor(coordinates.length / 2)],
-              zoom: 13.5,
-              pitch: 65,
-              bearing: 90,
-              duration: 3500,
-              essential: true
-            });
+        // 1. Drone Orbit Animation Handler
+        const orbitBtn = document.getElementById('btn-orbit-cam');
+        if (orbitBtn) {
+          orbitBtn.addEventListener('click', () => {
+            if (isOrbiting) {
+              stopOrbit();
+              orbitBtn.innerText = '🔄 Modo Órbita Drone 360°';
+            } else {
+              startOrbit();
+              orbitBtn.innerText = '⏹ Detener Órbita';
+            }
           });
+        }
+
+        function startOrbit() {
+          isOrbiting = true;
+          function rotateCamera(timestamp: number) {
+            if (!isOrbiting) return;
+            map.setBearing((map.getBearing() + 0.25) % 360);
+            orbitAnimationFrame = requestAnimationFrame(rotateCamera);
+          }
+          rotateCamera(0);
+        }
+
+        function stopOrbit() {
+          isOrbiting = false;
+          if (orbitAnimationFrame) cancelAnimationFrame(orbitAnimationFrame);
+        }
+
+        // 2. Chase Cam / GPX Simulation Handler
+        const chaseBtn = document.getElementById('btn-chase-cam');
+        if (chaseBtn) {
+          chaseBtn.addEventListener('click', () => {
+            if (isSimulationRunning) {
+              isSimulationRunning = false;
+              chaseBtn.innerText = '🏎️ Simular Recorrido GPX';
+            } else {
+              isSimulationRunning = true;
+              chaseBtn.innerText = '⏹ Detener Recorrido';
+              simulateGPXRun(coordinates);
+            }
+          });
+        }
+
+        function simulateGPXRun(coords: number[][]) {
+          let stepIdx = 0;
+          function step() {
+            if (!isSimulationRunning || stepIdx >= coords.length) {
+              isSimulationRunning = false;
+              if (chaseBtn) chaseBtn.innerText = '🏎️ Simular Recorrido GPX';
+              return;
+            }
+
+            const coord = coords[stepIdx];
+            currentMarker.setLngLat([coord[0], coord[1]]);
+            
+            // Move camera following vehicle
+            map.easeTo({
+              center: [coord[0], coord[1]],
+              zoom: 13.8,
+              pitch: 65,
+              duration: 100
+            });
+
+            stepIdx += 2; // Move along points
+            setTimeout(step, 100);
+          }
+          step();
         }
 
       } catch (err) {
@@ -401,14 +463,13 @@ const { slug } = Astro.params;
     if (tEl) tEl.innerText = title;
     if (dEl) dEl.innerText = desc;
 
-    // Smooth JS 3D FlyTo animation on milestone click
     if (map && coords) {
       map.flyTo({
         center: coords,
-        zoom: 13.2,
+        zoom: 13.5,
         pitch: 60,
-        bearing: step * 35,
-        duration: 2000,
+        bearing: step * 40,
+        duration: 2200,
         essential: true
       });
 
