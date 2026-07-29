@@ -1,0 +1,617 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Explorar Territorio | Aldo en Ruta" activeNav="Explorar">
+  <section class="explorar-hero">
+    <div class="container">
+      <span class="badge badge-gold">EXPLORAR</span>
+      <h1 class="page-title title-serif">Descubre el territorio a través de sus rutas</h1>
+      <p class="page-sub">Explora rutas por geografía, paisaje y experiencia de manejo en los caminos más fascinantes del Perú.</p>
+
+      <!-- Filter Tabs Bar -->
+      <div class="filter-tabs">
+        <button class="tab-btn active">Todo</button>
+        <button class="tab-btn">Andes</button>
+        <button class="tab-btn">Costa</button>
+        <button class="tab-btn">Selva</button>
+        <button class="tab-btn">Desierto</button>
+        <button class="tab-btn">Rutas sinuosas</button>
+        <button class="tab-btn"><span class="dot available"></span> Disponibles</button>
+        <button class="tab-btn"><span class="dot upcoming"></span> Próximamente</button>
+      </div>
+
+      <div class="hero-actions">
+        <a href="#mapa-territorial" class="btn-gold">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+          Ver mapa completo
+        </a>
+        <a href="#rutas-destacadas" class="btn-outline-gold">
+          Explorar rutas destacadas
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Map Section -->
+  <section id="mapa-territorial" class="map-section">
+    <div class="container relative-container">
+      <div class="map-wrapper glass-panel">
+        <div id="explorar-map" class="full-map"></div>
+
+        <!-- Floating Route Highlight Card -->
+        <div class="floating-route-card glass-panel-gold">
+          <span class="badge badge-gold">RUTA DESTACADA</span>
+          <h3 class="f-title title-serif">Ruta andina — Tramo piloto</h3>
+          
+          <div class="f-metrics-grid">
+            <div class="f-m-item">
+              <span class="f-m-label">Distancia</span>
+              <span class="f-m-val">11.6 km</span>
+            </div>
+            <div class="f-m-item">
+              <span class="f-m-label">Duración</span>
+              <span class="f-m-val">12 min</span>
+            </div>
+            <div class="f-m-item">
+              <span class="f-m-label">Altitud máx.</span>
+              <span class="f-m-val">3,901 m</span>
+            </div>
+            <div class="f-m-item">
+              <span class="f-m-label">Territorio</span>
+              <span class="f-m-val">Andes</span>
+            </div>
+            <div class="f-m-item">
+              <span class="f-m-label">Conducción</span>
+              <span class="f-m-val">Moderada</span>
+            </div>
+          </div>
+
+          <a href="/rutas/piloto" class="btn-gold btn-full">
+            Ver ruta
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+        <!-- Floating Map Legend -->
+        <div class="floating-legend glass-panel">
+          <h4 class="legend-title">Leyenda</h4>
+          <div class="legend-row"><span class="dot available"></span> Ruta disponible</div>
+          <div class="legend-row"><span class="dot upcoming"></span> Próximamente</div>
+          <div class="legend-row"><span class="dot planning"></span> En planificación</div>
+          <p class="legend-hint">Haz clic en una ruta para ver detalles y puntos clave.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Explora por territorio -->
+  <section class="section-territorios">
+    <div class="container">
+      <h2 class="section-title title-serif">Explora por territorio</h2>
+
+      <div class="territorio-grid">
+        <div class="territorio-card" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80');">
+          <div class="t-overlay"></div>
+          <div class="t-content">
+            <h3 class="t-title title-serif">Andes</h3>
+            <p class="t-desc">Montañas imponentes, curvas desafiantes y vistas infinitas.</p>
+            <span class="t-count">18 rutas disponibles →</span>
+          </div>
+        </div>
+
+        <div class="territorio-card" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80');">
+          <div class="t-overlay"></div>
+          <div class="t-content">
+            <h3 class="t-title title-serif">Costa</h3>
+            <p class="t-desc">Carreteras junto al mar, acantilados y horizontes abiertos.</p>
+            <span class="t-count">12 rutas disponibles →</span>
+          </div>
+        </div>
+
+        <div class="territorio-card" style="background-image: url('https://images.unsplash.com/photo-1511497584788-8767611136f6?auto=format&fit=crop&w=600&q=80');">
+          <div class="t-overlay"></div>
+          <div class="t-content">
+            <h3 class="t-title title-serif">Selva</h3>
+            <p class="t-desc">Vegetación densa, ríos y caminos que conectan lo profundo.</p>
+            <span class="t-count">10 rutas disponibles →</span>
+          </div>
+        </div>
+
+        <div class="territorio-card" style="background-image: url('https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=600&q=80');">
+          <div class="t-overlay"></div>
+          <div class="t-content">
+            <h3 class="t-title title-serif">Desierto</h3>
+            <p class="t-desc">Paisajes áridos, valles y rutas de aventura.</p>
+            <span class="t-count">6 rutas disponibles →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Explora por tipo de experiencia -->
+  <section class="section-experiencia">
+    <div class="container">
+      <h2 class="section-title title-serif">Explora por tipo de experiencia</h2>
+
+      <div class="exp-grid">
+        <div class="exp-pill glass-panel">
+          <div class="exp-icon">🛣️</div>
+          <div>
+            <h4>Rutas sinuosas</h4>
+            <p>Curvas y pendientes que retan y emocionan.</p>
+          </div>
+        </div>
+
+        <div class="exp-pill glass-panel">
+          <div class="exp-icon">🌐</div>
+          <div>
+            <h4>Panoramas 360°</h4>
+            <p>Vistas inmersivas en cada tramo.</p>
+          </div>
+        </div>
+
+        <div class="exp-pill glass-panel">
+          <div class="exp-icon">🎥</div>
+          <div>
+            <h4>Vídeo de ruta</h4>
+            <p>Recorridos grabados desde la carretera.</p>
+          </div>
+        </div>
+
+        <div class="exp-pill glass-panel">
+          <div class="exp-icon">📖</div>
+          <div>
+            <h4>Historia del trayecto</h4>
+            <p>Relatos y datos del camino recorrido.</p>
+          </div>
+        </div>
+
+        <div class="exp-pill glass-panel">
+          <div class="exp-icon">🏞️</div>
+          <div>
+            <h4>Paisaje abierto</h4>
+            <p>Carreteras largas, horizontes infinitos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Rutas destacadas -->
+  <section id="rutas-destacadas" class="section-destacadas">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title title-serif">Rutas destacadas</h2>
+        <a href="/rutas" class="link-gold">Ver todas las rutas →</a>
+      </div>
+
+      <div class="destacadas-grid">
+        <!-- Route Card 1: Piloto -->
+        <div class="route-card glass-panel-gold">
+          <div class="card-thumb">
+            <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80" alt="Ruta andina" />
+            <span class="badge badge-gold pos-badge">DESTACADA</span>
+            <span class="badge badge-dark pos-360">360°</span>
+          </div>
+          <div class="card-body">
+            <h3 class="r-title title-serif">Ruta andina — Tramo piloto</h3>
+            <p class="r-desc">Un recorrido en altura por una carretera sinuosa rodeada de laderas verdes y vistas del valle andino.</p>
+            
+            <div class="r-metrics">
+              <span><strong>11.6 km</strong> Distancia</span>
+              <span><strong>12 min</strong> Duración</span>
+              <span><strong>3,901 m</strong> Altitud máx.</span>
+            </div>
+
+            <a href="/rutas/piloto" class="btn-gold btn-full">Entrar a la ruta →</a>
+          </div>
+        </div>
+
+        <!-- Route Card 2: Costa -->
+        <div class="route-card glass-panel">
+          <div class="card-thumb">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="Costa panorámica" />
+            <span class="badge badge-dark pos-360">360°</span>
+          </div>
+          <div class="card-body">
+            <h3 class="r-title title-serif">Costa panorámica</h3>
+            <p class="r-desc">Ruta costera con vistas al mar, acantilados y pueblos que acompañan el camino.</p>
+            
+            <div class="r-metrics">
+              <span><strong>23.4 km</strong> Distancia</span>
+              <span><strong>28 min</strong> Duración</span>
+              <span><strong>850 m</strong> Altitud máx.</span>
+            </div>
+
+            <a href="/rutas/piloto" class="btn-outline-gold btn-full">Ver ruta →</a>
+          </div>
+        </div>
+
+        <!-- Route Card 3: Valle del Mantaro -->
+        <div class="route-card glass-panel">
+          <div class="card-thumb">
+            <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=600&q=80" alt="Valle del Mantaro" />
+            <span class="badge badge-dark pos-360">360°</span>
+          </div>
+          <div class="card-body">
+            <h3 class="r-title title-serif">Valle del Mantaro</h3>
+            <p class="r-desc">Recorrido entre valles y montañas, con miradores naturales y curvas memorables.</p>
+            
+            <div class="r-metrics">
+              <span><strong>17.8 km</strong> Distancia</span>
+              <span><strong>20 min</strong> Duración</span>
+              <span><strong>2,800 m</strong> Altitud máx.</span>
+            </div>
+
+            <a href="/rutas/piloto" class="btn-outline-gold btn-full">Ver ruta →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .explorar-hero {
+    padding: 4rem 0 3rem;
+  }
+
+  .page-title {
+    font-size: 2.8rem;
+    margin: 0.75rem 0;
+  }
+
+  .page-sub {
+    color: var(--text-sub);
+    font-size: 1.1rem;
+    max-width: 650px;
+    margin-bottom: 2rem;
+  }
+
+  .filter-tabs {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .tab-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1.1rem;
+    border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-sub);
+    font-size: 0.85rem;
+    transition: var(--transition-fast);
+  }
+
+  .tab-btn:hover, .tab-btn.active {
+    background: var(--gold-subtle);
+    border-color: var(--border-gold);
+    color: var(--gold-primary);
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  /* Map Section */
+  .map-section {
+    margin-bottom: 5rem;
+  }
+
+  .map-wrapper {
+    position: relative;
+    height: 580px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .full-map {
+    width: 100%;
+    height: 100%;
+    background: #090e17;
+  }
+
+  .floating-route-card {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    width: 320px;
+    padding: 1.5rem;
+    z-index: 20;
+  }
+
+  .f-title {
+    font-size: 1.25rem;
+    margin: 0.5rem 0 1rem;
+  }
+
+  .f-metrics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .f-m-label {
+    display: block;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+  }
+
+  .f-m-val {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-main);
+  }
+
+  .floating-legend {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    padding: 1.25rem;
+    width: 240px;
+    z-index: 20;
+    font-size: 0.82rem;
+  }
+
+  .legend-title {
+    font-size: 0.85rem;
+    color: var(--text-main);
+    margin-bottom: 0.75rem;
+  }
+
+  .legend-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-sub);
+    margin-bottom: 0.4rem;
+  }
+
+  .legend-hint {
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    line-height: 1.3;
+  }
+
+  /* Territorios Grid */
+  .section-territorios {
+    margin-bottom: 5rem;
+  }
+
+  .territorio-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+  }
+
+  .territorio-card {
+    position: relative;
+    height: 280px;
+    border-radius: var(--radius-md);
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    border: 1px solid var(--border-subtle);
+  }
+
+  .t-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(8, 12, 20, 0.2) 0%, rgba(8, 12, 20, 0.9) 100%);
+  }
+
+  .t-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.25rem;
+  }
+
+  .t-title {
+    font-size: 1.4rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .t-desc {
+    font-size: 0.8rem;
+    color: var(--text-sub);
+    line-height: 1.4;
+    margin-bottom: 0.75rem;
+  }
+
+  .t-count {
+    font-size: 0.8rem;
+    color: var(--gold-primary);
+    font-weight: 600;
+  }
+
+  /* Experiencia Grid */
+  .section-experiencia {
+    margin-bottom: 5rem;
+  }
+
+  .exp-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .exp-pill {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    padding: 1.25rem;
+  }
+
+  .exp-icon {
+    font-size: 1.6rem;
+  }
+
+  .exp-pill h4 {
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .exp-pill p {
+    font-size: 0.75rem;
+    color: var(--text-sub);
+    line-height: 1.3;
+  }
+
+  /* Destacadas Grid */
+  .section-destacadas {
+    margin-bottom: 6rem;
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  .link-gold {
+    color: var(--gold-primary);
+    font-weight: 600;
+  }
+
+  .destacadas-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .route-card {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+
+  .card-thumb {
+    position: relative;
+    height: 200px;
+  }
+
+  .card-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .pos-badge { position: absolute; top: 1rem; left: 1rem; }
+  .pos-360 { position: absolute; top: 1rem; right: 1rem; }
+
+  .card-body {
+    padding: 1.5rem;
+  }
+
+  .r-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .r-desc {
+    font-size: 0.85rem;
+    color: var(--text-sub);
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+  }
+
+  .r-metrics {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--text-sub);
+    margin-bottom: 1.25rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .r-metrics strong {
+    display: block;
+    color: var(--text-main);
+  }
+
+  @media (max-width: 1024px) {
+    .territorio-grid { grid-template-columns: repeat(2, 1fr); }
+    .exp-grid { grid-template-columns: repeat(3, 1fr); }
+    .destacadas-grid { grid-template-columns: 1fr; }
+    .floating-route-card { position: relative; top: 0; right: 0; width: 100%; }
+  }
+</style>
+
+<script>
+  import maplibregl from 'maplibre-gl';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const mapEl = document.getElementById('explorar-map');
+    if (!mapEl) return;
+
+    const map = new maplibregl.Map({
+      container: 'explorar-map',
+      style: 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json',
+      center: [-75.0152, -9.1900],
+      zoom: 5.5,
+      attributionControl: false
+    });
+
+    map.on('load', () => {
+      map.addSource('peru-routes', {
+        'type': 'geojson',
+        'data': {
+          'type': 'FeatureCollection',
+          'features': [
+            {
+              'type': 'Feature',
+              'properties': { 'name': 'Ruta Andina Piloto', 'status': 'available' },
+              'geometry': {
+                'type': 'LineString',
+                'coordinates': [
+                  [-77.0428, -12.0464],
+                  [-76.5000, -11.7000],
+                  [-76.0000, -11.4000],
+                  [-75.3000, -11.1000]
+                ]
+              }
+            },
+            {
+              'type': 'Feature',
+              'properties': { 'name': 'Panamericana Sur', 'status': 'upcoming' },
+              'geometry': {
+                'type': 'LineString',
+                'coordinates': [
+                  [-77.0428, -12.0464],
+                  [-76.3000, -13.5000],
+                  [-75.7000, -14.1000]
+                ]
+              }
+            }
+          ]
+        }
+      });
+
+      map.addLayer({
+        'id': 'peru-routes-layer',
+        'type': 'line',
+        'source': 'peru-routes',
+        'paint': {
+          'line-color': ['match', ['get', 'status'], 'available', '#D4AF37', '#3b82f6'],
+          'line-width': 4
+        }
+      });
+    });
+  });
+</script>

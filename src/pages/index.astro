@@ -1,0 +1,608 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Aldo en Ruta | El Perú no solo se visita. Se atraviesa." activeNav="Inicio">
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="container hero-container">
+      <div class="collection-badge">
+        <span class="badge-dot"></span>
+        COLECCIÓN DESTACADA • PERÚ EN RUTA 360
+      </div>
+
+      <h1 class="hero-title title-serif">
+        El Perú no solo<br />se visita. Se atraviesa.
+      </h1>
+
+      <p class="hero-description">
+        Descubre recorridos reales por carretera a través de mapas interactivos, panoramas 360°, vídeo y datos del trayecto.
+      </p>
+
+      <div class="hero-actions">
+        <a href="/rutas/piloto/rapida" class="btn-outline-gold">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+          Ver experiencia rápida
+        </a>
+        <a href="/rutas/piloto" class="btn-gold">
+          Explorar la ruta completa
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Metrics Bar -->
+  <section class="metrics-section">
+    <div class="container">
+      <div class="metrics-grid glass-panel">
+        <div class="metric-item">
+          <div class="metric-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+          </div>
+          <div>
+            <div class="metric-value">11.6 km</div>
+            <div class="metric-label">Distancia</div>
+          </div>
+        </div>
+
+        <div class="metric-item">
+          <div class="metric-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <div class="metric-value">12 min</div>
+            <div class="metric-label">Duración</div>
+          </div>
+        </div>
+
+        <div class="metric-item">
+          <div class="metric-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg>
+          </div>
+          <div>
+            <div class="metric-value">3,901 m</div>
+            <div class="metric-label">Altitud máxima</div>
+          </div>
+        </div>
+
+        <div class="metric-item">
+          <div class="metric-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="metric-value">Andes</div>
+            <div class="metric-label">Territorio</div>
+          </div>
+        </div>
+
+        <div class="metric-item">
+          <div class="metric-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+          </div>
+          <div>
+            <div class="metric-value">Moderada</div>
+            <div class="metric-label">Nivel de conducción</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Map Preview -->
+  <section class="section-map">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title title-serif">Explora el Perú por carretera</h2>
+          <p class="section-sub">Descubre rutas reales que atraviesan montañas, desiertos, valles y selvas. Elige tu próxima aventura.</p>
+        </div>
+      </div>
+
+      <div class="map-card glass-panel">
+        <div id="home-map" class="map-container"></div>
+        <div class="map-overlay-legend">
+          <div class="legend-item"><span class="dot available"></span> Ruta disponible</div>
+          <div class="legend-item"><span class="dot upcoming"></span> Próximamente</div>
+          <div class="legend-item"><span class="dot planning"></span> En planificación</div>
+          <a href="/rutas" class="map-link-all">Ver todas las rutas →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Experience Categories -->
+  <section class="section-categories">
+    <div class="container">
+      <h2 class="section-title title-serif">Elige tu tipo de experiencia</h2>
+      
+      <div class="categories-grid">
+        <div class="category-card" style="background-image: url('https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=600&q=80');">
+          <div class="card-gradient"></div>
+          <div class="category-content">
+            <div class="cat-icon">🌵</div>
+            <h3 class="cat-title">Desierto</h3>
+            <p class="cat-desc">Rutas secas y paisajes infinitos.</p>
+          </div>
+        </div>
+
+        <div class="category-card" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80');">
+          <div class="card-gradient"></div>
+          <div class="category-content">
+            <div class="cat-icon">🏔️</div>
+            <h3 class="cat-title">Andes</h3>
+            <p class="cat-desc">Montañas, altura y curvas inolvidables.</p>
+          </div>
+        </div>
+
+        <div class="category-card" style="background-image: url('https://images.unsplash.com/photo-1511497584788-8767611136f6?auto=format&fit=crop&w=600&q=80');">
+          <div class="card-gradient"></div>
+          <div class="category-content">
+            <div class="cat-icon">🌿</div>
+            <h3 class="cat-title">Selva</h3>
+            <p class="cat-desc">Vegetación densa y caminos vivos.</p>
+          </div>
+        </div>
+
+        <div class="category-card" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80');">
+          <div class="card-gradient"></div>
+          <div class="category-content">
+            <div class="cat-icon">🌊</div>
+            <h3 class="cat-title">Costa</h3>
+            <p class="cat-desc">Carreteras junto al mar y acantilados.</p>
+          </div>
+        </div>
+
+        <div class="category-card" style="background-image: url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=600&q=80');">
+          <div class="card-gradient"></div>
+          <div class="category-content">
+            <div class="cat-icon">🛣️</div>
+            <h3 class="cat-title">Rutas sinuosas</h3>
+            <p class="cat-desc">Curvas, pendientes y adrenalina.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Featured Route -->
+  <section class="section-featured">
+    <div class="container">
+      <div class="featured-card glass-panel-gold">
+        <div class="featured-preview">
+          <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80" alt="Ruta Andina Tramo Piloto" />
+          <div class="preview-badge-360">
+            <span>360°</span>
+          </div>
+          <a href="/rutas/piloto" class="play-overlay">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" fill="rgba(0,0,0,0.6)"/><polygon points="10 8 16 12 10 16 10 8" fill="#D4AF37"/></svg>
+          </a>
+        </div>
+
+        <div class="featured-info">
+          <span class="badge badge-gold">PERÚ EN RUTA 360</span>
+          <h2 class="featured-title title-serif">Ruta andina — Tramo piloto</h2>
+          <p class="featured-desc">
+            Un recorrido en altura por una carretera sinuosa rodeada de laderas verdes, curvas cerradas y vistas abiertas del valle andino.
+          </p>
+
+          <div class="featured-metrics">
+            <div class="f-metric"><strong>11.6 km</strong> Distancia</div>
+            <div class="f-metric"><strong>12 min</strong> Duración</div>
+            <div class="f-metric"><strong>3,901 m</strong> Altitud máx.</div>
+            <div class="f-metric"><strong>Moderada</strong> Conducción</div>
+          </div>
+
+          <div class="featured-tags">
+            <span class="badge badge-dark">Montaña</span>
+            <span class="badge badge-dark">Curvas</span>
+            <span class="badge badge-dark">Altura</span>
+            <span class="badge badge-dark">Vista 360°</span>
+            <span class="badge badge-dark">Aventura</span>
+          </div>
+
+          <a href="/rutas/piloto" class="btn-gold btn-full">
+            Entrar a la ruta
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Hero Styles */
+  .hero-section {
+    position: relative;
+    padding: 7rem 0 5rem;
+    background: linear-gradient(180deg, rgba(8, 12, 20, 0.4) 0%, var(--bg-dark) 100%),
+                url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+  }
+
+  .hero-container {
+    max-width: 800px;
+  }
+
+  .collection-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(212, 175, 55, 0.12);
+    border: 1px solid var(--border-gold);
+    color: var(--gold-primary);
+    padding: 0.4rem 1rem;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    margin-bottom: 1.5rem;
+  }
+
+  .badge-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--gold-primary);
+    border-radius: 50%;
+    box-shadow: 0 0 6px var(--gold-primary);
+  }
+
+  .hero-title {
+    font-size: 3.5rem;
+    color: var(--text-main);
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-description {
+    font-size: 1.15rem;
+    color: var(--text-sub);
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    max-width: 620px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  /* Metrics Section */
+  .metrics-section {
+    margin-top: -2.5rem;
+    position: relative;
+    z-index: 10;
+    margin-bottom: 4rem;
+  }
+
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    padding: 1.5rem 2rem;
+    gap: 1.5rem;
+  }
+
+  .metric-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .metric-icon {
+    color: var(--gold-primary);
+    background: var(--gold-subtle);
+    padding: 0.6rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-gold);
+  }
+
+  .metric-value {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-main);
+  }
+
+  .metric-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  /* Map Section */
+  .section-map {
+    margin-bottom: 5rem;
+  }
+
+  .section-title {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-sub {
+    color: var(--text-sub);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .map-card {
+    position: relative;
+    overflow: hidden;
+    height: 480px;
+    border-radius: var(--radius-lg);
+  }
+
+  .map-container {
+    width: 100%;
+    height: 100%;
+    background: #0b111e;
+  }
+
+  .map-overlay-legend {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    background: rgba(8, 12, 20, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-subtle);
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    font-size: 0.85rem;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-sub);
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+
+  .dot.available { background: var(--gold-primary); box-shadow: 0 0 6px var(--gold-primary); }
+  .dot.upcoming { background: #3b82f6; }
+  .dot.planning { background: #6b7280; }
+
+  .map-link-all {
+    color: var(--gold-primary);
+    font-weight: 600;
+    margin-left: auto;
+  }
+
+  /* Categories Grid */
+  .section-categories {
+    margin-bottom: 5rem;
+  }
+
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+
+  .category-card {
+    position: relative;
+    height: 240px;
+    border-radius: var(--radius-md);
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    border: 1px solid var(--border-subtle);
+    transition: var(--transition-smooth);
+  }
+
+  .category-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--border-gold);
+    box-shadow: 0 8px 30px var(--gold-glow);
+  }
+
+  .card-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(8, 12, 20, 0.2) 0%, rgba(8, 12, 20, 0.95) 100%);
+  }
+
+  .category-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.25rem;
+
+  .cat-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .cat-title {
+    font-family: var(--font-title);
+    font-size: 1.25rem;
+    color: var(--text-main);
+    margin-bottom: 0.25rem;
+  }
+
+  .cat-desc {
+    font-size: 0.78rem;
+    color: var(--text-sub);
+    line-height: 1.4;
+  }
+
+  /* Featured Route */
+  .section-featured {
+    margin-bottom: 6rem;
+  }
+
+  .featured-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    padding: 2.5rem;
+    align-items: center;
+  }
+
+  .featured-preview {
+    position: relative;
+    height: 380px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+
+  .featured-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .preview-badge-360 {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: rgba(8, 12, 20, 0.8);
+    border: 1px solid var(--border-gold);
+    color: var(--gold-primary);
+    font-weight: 700;
+    font-size: 0.8rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: var(--radius-full);
+  }
+
+  .play-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.3);
+    transition: var(--transition-fast);
+  }
+
+  .play-overlay:hover {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  .featured-title {
+    font-size: 2.2rem;
+    margin: 0.75rem 0;
+  }
+
+  .featured-desc {
+    color: var(--text-sub);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .featured-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    padding: 1rem 0;
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+    margin-bottom: 1.5rem;
+    font-size: 0.85rem;
+    color: var(--text-sub);
+  }
+
+  .featured-metrics strong {
+    display: block;
+    color: var(--text-main);
+    font-size: 1rem;
+  }
+
+  .featured-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .btn-full {
+    width: 100%;
+  }
+
+  @media (max-width: 1024px) {
+    .metrics-grid { grid-template-columns: repeat(3, 1fr); }
+    .categories-grid { grid-template-columns: repeat(3, 1fr); }
+    .featured-card { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 640px) {
+    .hero-title { font-size: 2.4rem; }
+    .metrics-grid { grid-template-columns: 1fr; }
+    .categories-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  import maplibregl from 'maplibre-gl';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const mapContainer = document.getElementById('home-map');
+    if (!mapContainer) return;
+
+    const map = new maplibregl.Map({
+      container: 'home-map',
+      style: 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json',
+      center: [-75.0152, -9.1900], // Center of Peru
+      zoom: 5.2,
+      attributionControl: false
+    });
+
+    map.on('load', () => {
+      // Mock pilot route geometry in Peru Andes
+      map.addSource('route-pilot', {
+        'type': 'geojson',
+        'data': {
+          'type': 'Feature',
+          'properties': {},
+          'geometry': {
+            'type': 'LineString',
+            'coordinates': [
+              [-77.0428, -12.0464],
+              [-76.7000, -11.8000],
+              [-76.4000, -11.6000],
+              [-76.0000, -11.4000],
+              [-75.5000, -11.1000]
+            ]
+          }
+        }
+      });
+
+      map.addLayer({
+        'id': 'route-pilot-line',
+        'type': 'line',
+        'source': 'route-pilot',
+        'layout': {
+          'line-join': 'round',
+          'line-cap': 'round'
+        },
+        'paint': {
+          'line-color': '#D4AF37',
+          'line-width': 4,
+          'line-blur': 1
+        }
+      });
+
+      // Marker for Pilot Route
+      const el = document.createElement('div');
+      el.className = 'custom-marker';
+      el.style.backgroundColor = '#D4AF37';
+      el.style.width = '16px';
+      el.style.height = '16px';
+      el.style.borderRadius = '50%';
+      el.style.boxShadow = '0 0 15px #D4AF37';
+
+      new maplibregl.Marker(el)
+        .setLngLat([-76.4000, -11.6000])
+        .addTo(map);
+    });
+  });
+</script>

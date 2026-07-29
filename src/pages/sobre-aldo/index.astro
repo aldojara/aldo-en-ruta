@@ -1,0 +1,453 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Sobre Aldo | Aldo en Ruta" activeNav="Sobre Aldo">
+  <!-- Hero Section -->
+  <section class="sobre-hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-text-col">
+          <span class="badge badge-gold">HOLA, SOY ALDO</span>
+          <h1 class="hero-title title-serif">
+            Apasionado por los viajes, las carreteras y las historias que nos conectan.
+          </h1>
+          <p class="hero-sub">
+            Creo experiencias digitales para que más personas descubran el Perú desde una perspectiva inmersiva, auténtica y profundamente humana.
+          </p>
+
+          <div class="author-socials">
+            <a href="#" aria-label="Instagram" class="social-btn">📷</a>
+            <a href="#" aria-label="YouTube" class="social-btn">🎥</a>
+            <a href="#" aria-label="Web" class="social-btn">🌐</a>
+          </div>
+        </div>
+
+        <div class="hero-quote-col">
+          <div class="quote-box glass-panel-gold">
+            <span class="quote-mark">“</span>
+            <p class="quote-p">
+              La carretera siempre me ha enseñado algo nuevo. Este proyecto es mi forma de compartirlo.
+            </p>
+            <span class="author-sig title-serif">Aldo Jara</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats Bar -->
+      <div class="stats-row glass-panel">
+        <div class="stat-item">
+          <div class="stat-icon">🛣️</div>
+          <div>
+            <strong>+15 años</strong>
+            <span>Experiencia profesional en tecnología y datos</span>
+          </div>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-icon">📍</div>
+          <div>
+            <strong>+25,000 km</strong>
+            <span>Recorridos por el Perú</span>
+          </div>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-icon">📷</div>
+          <div>
+            <strong>360°</strong>
+            <span>Historias y escenas capturadas</span>
+          </div>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-icon">🏔️</div>
+          <div>
+            <strong>24</strong>
+            <span>Regiones exploradas y documentadas</span>
+          </div>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-icon">🎥</div>
+          <div>
+            <strong>100+</strong>
+            <span>Momentos inmersivos compartidos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- My Story Section -->
+  <section class="section-story">
+    <div class="container">
+      <div class="story-grid glass-panel">
+        <div class="story-img">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80" alt="Aldo en carretera" />
+        </div>
+
+        <div class="story-content">
+          <span class="badge badge-gold">MI HISTORIA</span>
+          <h2 class="section-heading title-serif">De la tecnología a la exploración</h2>
+          
+          <p class="p-text">
+            Soy Ingeniero de Sistemas y profesional en analítica y datos, con amplia experiencia ayudando a organizaciones a tomar mejores decisiones.
+          </p>
+
+          <p class="p-text">
+            Pero más allá de los datos, está mi otra pasión: viajar, conducir, descubrir caminos y capturar momentos únicos. 
+          </p>
+
+          <p class="p-text">
+            <strong>Aldo en Ruta</strong> nace de la unión de estas dos pasiones: la tecnología y la exploración, para crear experiencias que inspiren a otros a salir, descubrir y vivir el Perú.
+          </p>
+
+          <a href="#contacto" class="btn-outline-gold">
+            Conoce mi perfil profesional →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section class="section-values">
+    <div class="container">
+      <span class="badge badge-gold">LO QUE ME MUEVE</span>
+      <h2 class="section-heading title-serif">Valores que guían cada ruta</h2>
+
+      <div class="values-grid">
+        <div class="value-card glass-panel">
+          <div class="v-icon">⛰️</div>
+          <h3 class="v-title">Autenticidad</h3>
+          <p class="v-desc">Mostrar el Perú real, sin filtros ni artificios.</p>
+        </div>
+
+        <div class="value-card glass-panel">
+          <div class="v-icon">📷</div>
+          <h3 class="v-title">Exploración</h3>
+          <p class="v-desc">Ir más allá de lo conocido y encontrar lo extraordinario en lo simple.</p>
+        </div>
+
+        <div class="value-card glass-panel">
+          <div class="v-icon">❤️</div>
+          <h3 class="v-title">Conexión</h3>
+          <p class="v-desc">Contar historias que conecten personas con lugares.</p>
+        </div>
+
+        <div class="value-card glass-panel">
+          <div class="v-icon">🧭</div>
+          <h3 class="v-title">Respeto</h3>
+          <p class="v-desc">Viajar consciente, cuidando cada destino y su gente.</p>
+        </div>
+
+        <div class="value-card glass-panel">
+          <div class="v-icon">🤝</div>
+          <h3 class="v-title">Compartir</h3>
+          <p class="v-desc">Inspirar a otros a vivir sus propias aventuras.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Inspirational Places Section -->
+  <section class="section-places">
+    <div class="container">
+      <h3 class="places-title title-serif">Algunos lugares que me han inspirado</h3>
+
+      <div class="places-grid">
+        <div class="place-card" style="background-image: url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=400&q=80');">
+          <span class="place-name">Carretera Central</span>
+        </div>
+
+        <div class="place-card" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=400&q=80');">
+          <span class="place-name">Cañón del Colca</span>
+        </div>
+
+        <div class="place-card" style="background-image: url('https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&w=400&q=80');">
+          <span class="place-name">Laguna 69</span>
+        </div>
+
+        <div class="place-card" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80');">
+          <span class="place-name">Carretera Austral</span>
+        </div>
+
+        <div class="place-card" style="background-image: url('https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=400&q=80');">
+          <span class="place-name">Desierto de Ica</span>
+        </div>
+
+        <div class="place-card" style="background-image: url('https://images.unsplash.com/photo-1511497584788-8767611136f6?auto=format&fit=crop&w=400&q=80');">
+          <span class="place-name">Selva Central</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Invitation Callout -->
+  <section class="section-invite">
+    <div class="container">
+      <div class="invite-card glass-panel-gold">
+        <div>
+          <h2 class="invite-title title-serif">Este proyecto es una invitación.</h2>
+          <p class="invite-sub">Acompáñame a descubrir el Perú en ruta.</p>
+        </div>
+        <a href="/rutas" class="btn-gold">
+          Explorar rutas →
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .sobre-hero {
+    padding: 4rem 0 3rem;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    margin-bottom: 3rem;
+  }
+
+  .hero-title {
+    font-size: 2.8rem;
+    margin: 0.75rem 0;
+  }
+
+  .hero-sub {
+    color: var(--text-sub);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .author-socials {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-subtle);
+    font-size: 1.2rem;
+  }
+
+  .quote-box {
+    padding: 2.5rem;
+    position: relative;
+  }
+
+  .quote-mark {
+    font-family: var(--font-title);
+    font-size: 4rem;
+    color: var(--gold-primary);
+    line-height: 1;
+    position: absolute;
+    top: 1rem;
+    left: 1.5rem;
+    opacity: 0.3;
+  }
+
+  .quote-p {
+    font-size: 1.15rem;
+    font-style: italic;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .author-sig {
+    color: var(--gold-primary);
+    font-weight: 700;
+    font-size: 1.2rem;
+  }
+
+  /* Stats Row */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    padding: 1.5rem 2rem;
+    gap: 1rem;
+  }
+
+  .stat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .stat-icon { font-size: 1.5rem; }
+
+  .stat-item strong {
+    display: block;
+    font-size: 1.05rem;
+    color: var(--text-main);
+  }
+
+  .stat-item span {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+  }
+
+  /* Story Section */
+  .section-story {
+    margin-bottom: 5rem;
+  }
+
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 2.5rem;
+    padding: 2rem;
+    align-items: center;
+  }
+
+  .story-img {
+    height: 380px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+
+  .story-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .section-heading {
+    font-size: 2.2rem;
+    margin: 0.5rem 0 1.25rem;
+  }
+
+  .p-text {
+    color: var(--text-sub);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+  }
+
+  /* Values Section */
+  .section-values {
+    margin-bottom: 5rem;
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+  }
+
+  .value-card {
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .v-icon {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .v-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .v-desc {
+    font-size: 0.78rem;
+    color: var(--text-sub);
+    line-height: 1.4;
+  }
+
+  /* Places Section */
+  .section-places {
+    margin-bottom: 5rem;
+  }
+
+  .places-title {
+    font-size: 1.2rem;
+    margin-bottom: 1.25rem;
+    color: var(--text-sub);
+  }
+
+  .places-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1rem;
+  }
+
+  .place-card {
+    position: relative;
+    height: 120px;
+    border-radius: var(--radius-sm);
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    padding: 0.75rem;
+    border: 1px solid var(--border-subtle);
+  }
+
+  .place-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.85) 100%);
+  }
+
+  .place-name {
+    position: relative;
+    z-index: 2;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  /* Invite Section */
+  .section-invite {
+    margin-bottom: 6rem;
+  }
+
+  .invite-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2.5rem;
+  }
+
+  .invite-title {
+    font-size: 1.8rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .invite-sub {
+    color: var(--text-sub);
+    font-size: 1rem;
+  }
+
+  @media (max-width: 1024px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .stats-row { grid-template-columns: repeat(3, 1fr); }
+    .story-grid { grid-template-columns: 1fr; }
+    .values-grid { grid-template-columns: repeat(2, 1fr); }
+    .places-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  @media (max-width: 640px) {
+    .stats-row { grid-template-columns: 1fr; }
+    .values-grid { grid-template-columns: 1fr; }
+    .places-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>

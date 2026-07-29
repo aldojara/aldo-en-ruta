@@ -1,0 +1,478 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Catálogo de Rutas | Aldo en Ruta" activeNav="Rutas">
+  <!-- Hero Section -->
+  <section class="rutas-hero">
+    <div class="container">
+      <h1 class="page-title title-serif">Rutas</h1>
+      <p class="page-sub">
+        Recorridos reales por carretera que atraviesan los paisajes más diversos del Perú. Elige tu próxima aventura.
+      </p>
+
+      <!-- Global Metrics Bar -->
+      <div class="global-stats-bar glass-panel">
+        <div class="stat-box">
+          <span class="stat-num text-gold">12</span>
+          <span class="stat-lbl">Rutas disponibles</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">7</span>
+          <span class="stat-lbl">Regiones</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">21,430 km</span>
+          <span class="stat-lbl">Recorridos totales</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">360°</span>
+          <span class="stat-lbl">Experiencias inmersivas</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">2024–2025</span>
+          <span class="stat-lbl">Años de viajes</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Catalog Toolbar & Filters -->
+  <section class="catalog-section">
+    <div class="container">
+      <div class="toolbar glass-panel">
+        <div class="filters-group">
+          <select class="filter-select">
+            <option value="">Filtrar por región</option>
+            <option value="ancash">Ancash</option>
+            <option value="cusco">Cusco</option>
+            <option value="arequipa">Arequipa</option>
+            <option value="ica">Ica</option>
+            <option value="puno">Puno</option>
+            <option value="san-martin">San Martín</option>
+          </select>
+
+          <select class="filter-select">
+            <option value="">Tipo de experiencia</option>
+            <option value="montana">Montaña</option>
+            <option value="costa">Costa</option>
+            <option value="selva">Selva</option>
+            <option value="curvas">Curvas</option>
+          </select>
+
+          <select class="filter-select">
+            <option value="">Dificultad</option>
+            <option value="facil">Fácil</option>
+            <option value="moderada">Moderada</option>
+            <option value="desafiante">Desafiante</option>
+          </select>
+
+          <select class="filter-select">
+            <option value="">Duración</option>
+            <option value="1">1 día</option>
+            <option value="2">2 días</option>
+            <option value="3+">3+ días</option>
+          </select>
+        </div>
+
+        <div class="sort-group">
+          <span class="sort-lbl">Ordenar por:</span>
+          <select class="filter-select select-sm">
+            <option value="recientes">Más recientes</option>
+            <option value="distancia">Mayor distancia</option>
+            <option value="populares">Más populares</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Route Cards Grid -->
+      <div class="routes-grid">
+        <!-- Card 1 -->
+        <div class="route-card glass-panel">
+          <div class="card-thumb">
+            <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80" alt="Ruta de los Conchucos" />
+            <span class="badge badge-gold pos-top-left">NUEVA</span>
+            <button class="btn-fav pos-top-right" aria-label="Favorito">♡</button>
+          </div>
+          <div class="card-body">
+            <span class="region-label">ANCASH</span>
+            <h3 class="r-title title-serif">Ruta de los Conchucos</h3>
+            <p class="r-sub">Huaraz – Chavín – Chacas – Conchucos</p>
+
+            <div class="r-metrics-row">
+              <div><span>392 km</span> Distancia</div>
+              <div><span>2 días</span> Duración</div>
+              <div><span>Moderada</span> Dificultad</div>
+            </div>
+
+            <div class="r-tags-row">
+              <span class="badge badge-dark">Montaña</span>
+              <span class="badge badge-dark">Cultura</span>
+              <a href="/rutas/piloto" class="btn-arrow">→</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="route-card glass-panel">
+          <div class="card-thumb">
+            <img src="https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&w=600&q=80" alt="Valle Sagrado" />
+            <span class="badge badge-available pos-top-left">POPULAR</span>
+            <button class="btn-fav pos-top-right" aria-label="Favorito">♡</button>
+          </div>
+          <div class="card-body">
+            <span class="region-label">CUSCO</span>
+            <h3 class="r-title title-serif">Valle Sagrado en ruta</h3>
+            <p class="r-sub">Cusco – Pisac – Ollantaytambo – Urubamba</p>
+
+            <div class="r-metrics-row">
+              <div><span>287 km</span> Distancia</div>
+              <div><span>1 día</span> Duración</div>
+              <div><span>Fácil</span> Dificultad</div>
+            </div>
+
+            <div class="r-tags-row">
+              <span class="badge badge-dark">Valle</span>
+              <span class="badge badge-dark">Historia</span>
+              <span class="badge badge-dark">Cultura</span>
+              <a href="/rutas/piloto" class="btn-arrow">→</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="route-card glass-panel">
+          <div class="card-thumb">
+            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80" alt="Cañón del Colca" />
+            <button class="btn-fav pos-top-right" aria-label="Favorito">♡</button>
+          </div>
+          <div class="card-body">
+            <span class="region-label">AREQUIPA</span>
+            <h3 class="r-title title-serif">Ruta del Cañón del Colca</h3>
+            <p class="r-sub">Arequipa – Chivay – Cabanaconde</p>
+
+            <div class="r-metrics-row">
+              <div><span>360 km</span> Distancia</div>
+              <div><span>2 días</span> Duración</div>
+              <div><span>Moderada</span> Dificultad</div>
+            </div>
+
+            <div class="r-tags-row">
+              <span class="badge badge-dark">Montaña</span>
+              <span class="badge badge-dark">Naturaleza</span>
+              <a href="/rutas/piloto" class="btn-arrow">→</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="route-card glass-panel">
+          <div class="card-thumb">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="Panamericana Sur" />
+            <button class="btn-fav pos-top-right" aria-label="Favorito">♡</button>
+          </div>
+          <div class="card-body">
+            <span class="region-label">ICA</span>
+            <h3 class="r-title title-serif">Carretera Panamericana Sur</h3>
+            <p class="r-sub">Lima – Paracas – Ica – Nazca</p>
+
+            <div class="r-metrics-row">
+              <div><span>415 km</span> Distancia</div>
+              <div><span>1 día</span> Duración</div>
+              <div><span>Fácil</span> Dificultad</div>
+            </div>
+
+            <div class="r-tags-row">
+              <span class="badge badge-dark">Costa</span>
+              <span class="badge badge-dark">Desierto</span>
+              <span class="badge badge-dark">Mar</span>
+              <a href="/rutas/piloto" class="btn-arrow">→</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="route-card glass-panel">
+          <div class="card-thumb">
+            <img src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=600&q=80" alt="Altiplano" />
+            <button class="btn-fav pos-top-right" aria-label="Favorito">♡</button>
+          </div>
+          <div class="card-body">
+            <span class="region-label">PUNO</span>
+            <h3 class="r-title title-serif">Ruta del Altiplano</h3>
+            <p class="r-sub">Puno – Juli – Desaguadero – Moho</p>
+
+            <div class="r-metrics-row">
+              <div><span>410 km</span> Distancia</div>
+              <div><span>2 días</span> Duración</div>
+              <div><span>Desafiante</span> Dificultad</div>
+            </div>
+
+            <div class="r-tags-row">
+              <span class="badge badge-dark">Altiplano</span>
+              <span class="badge badge-dark">Lagos</span>
+              <span class="badge badge-dark">Cultura</span>
+              <a href="/rutas/piloto" class="btn-arrow">→</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="route-card glass-panel">
+          <div class="card-thumb">
+            <img src="https://images.unsplash.com/photo-1511497584788-8767611136f6?auto=format&fit=crop&w=600&q=80" alt="Selva Alta" />
+            <button class="btn-fav pos-top-right" aria-label="Favorito">♡</button>
+          </div>
+          <div class="card-body">
+            <span class="region-label">SAN MARTÍN</span>
+            <h3 class="r-title title-serif">Ruta a la Selva Alta</h3>
+            <p class="r-sub">Tarapoto – Sauce – Yurimaguas</p>
+
+            <div class="r-metrics-row">
+              <div><span>325 km</span> Distancia</div>
+              <div><span>2 días</span> Duración</div>
+              <div><span>Moderada</span> Dificultad</div>
+            </div>
+
+            <div class="r-tags-row">
+              <span class="badge badge-dark">Selva</span>
+              <span class="badge badge-dark">Ríos</span>
+              <span class="badge badge-dark">Naturaleza</span>
+              <a href="/rutas/piloto" class="btn-arrow">→</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="load-more-container">
+        <button class="btn-outline-gold">
+          Cargar más rutas v
+        </button>
+      </div>
+
+      <!-- Suggest Route Callout Banner -->
+      <div class="suggest-banner glass-panel-gold">
+        <div class="suggest-icon">🗺️</div>
+        <div class="suggest-content">
+          <h3 class="suggest-title title-serif">¿No encuentras la ruta que buscas?</h3>
+          <p class="suggest-desc">Estamos viajando y creando nuevas rutas constantemente. Cuéntanos qué lugar te gustaría ver.</p>
+        </div>
+        <a href="mailto:hola@aldoenruta.com" class="btn-gold">
+          Sugerir una ruta →
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .rutas-hero {
+    padding: 4rem 0 3rem;
+  }
+
+  .global-stats-bar {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    padding: 1.5rem 2rem;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .stat-box {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stat-num {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-main);
+  }
+
+  .stat-lbl {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    margin-bottom: 2.5rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .filters-group, .sort-group {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-select {
+    background: rgba(8, 12, 20, 0.8);
+    color: var(--text-sub);
+    border: 1px solid var(--border-subtle);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    outline: none;
+  }
+
+  .sort-lbl {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+  }
+
+  .routes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+    margin-bottom: 3rem;
+  }
+
+  .route-card {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: var(--transition-smooth);
+  }
+
+  .route-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--border-gold);
+  }
+
+  .card-thumb {
+    position: relative;
+    height: 210px;
+  }
+
+  .card-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .pos-top-left { position: absolute; top: 1rem; left: 1rem; }
+  .pos-top-right { position: absolute; top: 1rem; right: 1rem; }
+
+  .btn-fav {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border-subtle);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    backdrop-filter: blur(4px);
+  }
+
+  .card-body {
+    padding: 1.5rem;
+  }
+
+  .region-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--gold-primary);
+    display: block;
+    margin-bottom: 0.35rem;
+  }
+
+  .r-title {
+    font-size: 1.3rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .r-sub {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 1.25rem;
+  }
+
+  .r-metrics-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-subtle);
+    margin-bottom: 1rem;
+  }
+
+  .r-metrics-row span {
+    display: block;
+    color: var(--text-main);
+    font-weight: 600;
+  }
+
+  .r-tags-row {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .btn-arrow {
+    margin-left: auto;
+    width: 34px;
+    height: 34px;
+    border-radius: var(--radius-sm);
+    background: rgba(212, 175, 55, 0.12);
+    border: 1px solid var(--border-gold);
+    color: var(--gold-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    transition: var(--transition-fast);
+  }
+
+  .btn-arrow:hover {
+    background: var(--gold-primary);
+    color: #000;
+  }
+
+  .load-more-container {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .suggest-banner {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 2.5rem;
+    margin-bottom: 6rem;
+  }
+
+  .suggest-icon {
+    font-size: 2.5rem;
+  }
+
+  .suggest-title {
+    font-size: 1.6rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .suggest-desc {
+    color: var(--text-sub);
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 1024px) {
+    .global-stats-bar { grid-template-columns: repeat(3, 1fr); }
+    .routes-grid { grid-template-columns: repeat(2, 1fr); }
+    .suggest-banner { flex-direction: column; text-align: center; }
+  }
+
+  @media (max-width: 640px) {
+    .global-stats-bar { grid-template-columns: 1fr; }
+    .routes-grid { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,59 @@
+---
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import '../styles/global.css';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  activeNav?: 'Inicio' | 'Explorar' | 'Rutas' | 'Momentos' | 'Historias' | 'Sobre Aldo';
+}
+
+const {
+  title = 'Aldo en Ruta | Viajes, carreteras y experiencias inmersivas',
+  description = 'Descubre recorridos reales por carretera a través de mapas interactivos, panoramas 360°, vídeo y datos del trayecto en el Perú.',
+  activeNav = 'Inicio',
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+
+    <!-- MapLibre GL JS CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" />
+    <!-- Pannellum CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css" />
+  </head>
+  <body>
+    <SiteHeader activeNav={activeNav} />
+
+    <main class="main-content">
+      <slot />
+    </main>
+
+    <SiteFooter />
+
+    <!-- Pannellum JS CDN -->
+    <script is:inline src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+  </body>
+</html>
+
+<style>
+  .main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+</style>

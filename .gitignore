@@ -1,0 +1,29 @@
+# build output
+dist/
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# environment variables
+.env
+.env.production
+.env.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Heavy media assets & RAWs (Must stay outside repo according to Section 19 of doc maestro)
+archive/
+originals/
+*.mov
+*.mp4
+*.insv
+*.raw

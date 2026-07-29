@@ -1,0 +1,273 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Historias & Crónicas | Aldo en Ruta" activeNav="Historias">
+  <section class="historias-hero">
+    <div class="container">
+      <h1 class="hero-title title-serif">Historias de la Carretera</h1>
+      <p class="hero-sub">Crónicas, relatos y bitácoras de viajes y experiencias sobre el asfalto.</p>
+
+      <!-- Category Filter Tabs -->
+      <div class="category-tabs">
+        <button class="tab-chip active">Todas</button>
+        <button class="tab-chip">Crónicas</button>
+        <button class="tab-chip">Bitácora</button>
+        <button class="tab-chip">Preparación</button>
+        <button class="tab-chip">Aprendizajes</button>
+        <button class="tab-chip">Detrás de Cámara</button>
+      </div>
+
+      <!-- Featured Story Card -->
+      <article class="featured-story glass-panel-gold">
+        <div class="featured-thumb">
+          <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1200&q=80" alt="La Travesía del Mantaro" />
+          <div class="thumb-overlay"></div>
+          
+          <div class="featured-content">
+            <div class="featured-meta">
+              <span class="badge badge-gold">CRÓNICA</span>
+              <span class="read-time">⏱️ 8 min de lectura</span>
+            </div>
+
+            <h2 class="featured-heading title-serif">La Travesía del Mantaro: Entre el cielo y la roca</h2>
+
+            <a href="/historias/mantaro" class="read-link">
+              Leer historia completa →
+            </a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Stories Grid Section -->
+  <section class="stories-grid-section">
+    <div class="container">
+      <div class="stories-grid">
+        <!-- Article Card 1 -->
+        <article class="story-card glass-panel">
+          <div class="story-thumb">
+            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80" alt="La Ruta de los Volcanes" />
+            <span class="badge badge-gold pos-badge">CRÓNICA</span>
+          </div>
+          <div class="story-body">
+            <h3 class="story-title title-serif">La Ruta de los Volcanes</h3>
+            <div class="story-byline">
+              <span>15 Mayo 2024</span>
+              <span>Por Aldo</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Article Card 2 -->
+        <article class="story-card glass-panel">
+          <div class="story-thumb">
+            <img src="https://images.unsplash.com/photo-1511497584788-8767611136f6?auto=format&fit=crop&w=600&q=80" alt="Equipaje Minimalista" />
+            <span class="badge badge-dark pos-badge">PREPARACIÓN</span>
+          </div>
+          <div class="story-body">
+            <h3 class="story-title title-serif">Equipaje Minimalista para Carretera</h3>
+            <div class="story-byline">
+              <span>2 Junio 2024</span>
+              <span>Por Aldo</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Article Card 3 -->
+        <article class="story-card glass-panel">
+          <div class="story-thumb">
+            <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=600&q=80" alt="Encuentros en la Niebla" />
+            <span class="badge badge-dark pos-badge">BITÁCORA</span>
+          </div>
+          <div class="story-body">
+            <h3 class="story-title title-serif">Encuentros en la Niebla de los Andes</h3>
+            <div class="story-byline">
+              <span>28 Mayo 2024</span>
+              <span>Por Aldo</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Article Card 4 -->
+        <article class="story-card glass-panel">
+          <div class="story-thumb">
+            <img src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=600&q=80" alt="Lecciones del Desierto" />
+            <span class="badge badge-dark pos-badge">APRENDIZAJES</span>
+          </div>
+          <div class="story-body">
+            <h3 class="story-title title-serif">Lecciones del Desierto de la Costa Sur</h3>
+            <div class="story-byline">
+              <span>10 Junio 2024</span>
+              <span>Por Aldo</span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="more-stories-container">
+        <button class="btn-outline-gold">
+          Ver más historias
+        </button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .historias-hero {
+    padding: 4rem 0 3rem;
+  }
+
+  .hero-title {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-sub {
+    color: var(--text-sub);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+
+  .category-tabs {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+  }
+
+  .tab-chip {
+    padding: 0.5rem 1.1rem;
+    border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-sub);
+    font-size: 0.85rem;
+    transition: var(--transition-fast);
+  }
+
+  .tab-chip:hover, .tab-chip.active {
+    background: var(--gold-subtle);
+    border-color: var(--border-gold);
+    color: var(--gold-primary);
+  }
+
+  /* Featured Story */
+  .featured-story {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .featured-thumb {
+    position: relative;
+    height: 440px;
+  }
+
+  .featured-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .thumb-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(8, 12, 20, 0.1) 0%, rgba(8, 12, 20, 0.95) 100%);
+  }
+
+  .featured-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2.5rem;
+  }
+
+  .featured-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .read-time {
+    font-size: 0.85rem;
+    color: var(--text-sub);
+  }
+
+  .featured-heading {
+    font-size: 2.4rem;
+    color: var(--text-main);
+    margin-bottom: 1rem;
+    max-width: 800px;
+  }
+
+  .read-link {
+    color: var(--gold-primary);
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  /* Grid */
+  .stories-grid-section {
+    margin-bottom: 6rem;
+  }
+
+  .stories-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .story-card {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: var(--transition-smooth);
+  }
+
+  .story-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--border-gold);
+  }
+
+  .story-thumb {
+    position: relative;
+    height: 240px;
+  }
+
+  .story-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .pos-badge { position: absolute; top: 1rem; left: 1rem; }
+
+  .story-body {
+    padding: 1.5rem;
+  }
+
+  .story-title {
+    font-size: 1.4rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .story-byline {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  .more-stories-container {
+    text-align: center;
+  }
+
+  @media (max-width: 900px) {
+    .stories-grid { grid-template-columns: 1fr; }
+    .featured-heading { font-size: 1.8rem; }
+  }
+</style>

@@ -1,0 +1,233 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { slug: 'piloto' } }
+  ];
+}
+
+const { slug } = Astro.params;
+---
+
+<BaseLayout title="Experiencia Rápida (~3 min) | Ruta Andina | Aldo en Ruta" activeNav="Rutas">
+  <div class="quick-exp-page">
+    <div class="container relative-container">
+      <div class="quick-card glass-panel-gold">
+        <!-- Top Navigation -->
+        <div class="quick-header">
+          <a href="/rutas/piloto" class="back-link">✕ Salir de la experiencia rápida</a>
+          <span class="badge badge-gold">EXPERIENCIA RÁPIDA (~3 MIN)</span>
+        </div>
+
+        <!-- Stepper Progress Bar -->
+        <div class="stepper-bar">
+          <div class="step-dot active">1</div>
+          <div class="step-line"></div>
+          <div class="step-dot">2</div>
+          <div class="step-line"></div>
+          <div class="step-dot">3</div>
+          <div class="step-line"></div>
+          <div class="step-dot">4</div>
+          <div class="step-line"></div>
+          <div class="step-dot">5</div>
+        </div>
+
+        <!-- Main Slide Display -->
+        <div class="slide-container">
+          <div class="slide-media">
+            <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80" alt="Hito actual" id="quick-img" />
+          </div>
+
+          <div class="slide-info">
+            <span class="badge badge-dark" id="quick-step-lbl">PASO 1 DE 5</span>
+            <h2 class="slide-title title-serif" id="quick-title">1. El Punto de Partida en los Andes</h2>
+            <p class="slide-text" id="quick-desc">
+              Comenzamos el trayecto a 800 m s.n.m. bordeando la vertiente andina. El sol ilumina los primeros kilómetros de asfalto serpenteante.
+            </p>
+
+            <div class="slide-nav-buttons">
+              <button class="btn-outline-gold" id="btn-prev" disabled onclick="prevStep()">← Anterior</button>
+              <button class="btn-gold" id="btn-next" onclick="nextStep()">Siguiente hito →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom CTA to Full Exploration -->
+        <div class="quick-footer">
+          <a href="/rutas/piloto" class="link-gold">Abrir exploración completa de la ruta →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .quick-exp-page {
+    padding: 3rem 0 5rem;
+  }
+
+  .quick-card {
+    padding: 2.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .quick-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  .back-link {
+    color: var(--text-sub);
+    font-size: 0.85rem;
+  }
+
+  .stepper-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 3rem;
+  }
+
+  .step-dot {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+  }
+
+  .step-dot.active {
+    background: var(--gold-primary);
+    border-color: var(--gold-primary);
+    color: #000;
+    box-shadow: 0 0 15px var(--gold-glow);
+  }
+
+  .step-line {
+    flex: 1;
+    height: 2px;
+    background: var(--border-subtle);
+    max-width: 80px;
+  }
+
+  .slide-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .slide-media {
+    height: 320px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+
+  .slide-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .slide-title {
+    font-size: 1.8rem;
+    margin: 0.75rem 0;
+  }
+
+  .slide-text {
+    color: var(--text-sub);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+  }
+
+  .slide-nav-buttons {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .quick-footer {
+    text-align: center;
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .slide-container { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script is:inline>
+  const steps = [
+    {
+      title: "1. El Punto de Partida en los Andes",
+      desc: "Comenzamos el trayecto a 800 m s.n.m. bordeando la vertiente andina. El sol ilumina los primeros kilómetros de asfalto serpenteante.",
+      img: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      title: "2. La Sección de Curvas Cerradas",
+      desc: "Ganamos altitud rápidamente. La carretera serpentea abrazando las paredes de la montaña con desfiladeros impresionantes.",
+      img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      title: "3. Mirador de Acopalca",
+      desc: "Una pausa estratégica a 2,900 m s.n.m. para admirar la majestuosidad del valle andino en 360 grados.",
+      img: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      title: "4. El Abra a 3,901 metros",
+      desc: "Alcanzamos el punto culminante del tramo piloto. El horizonte abierto se funde con el azul profundo del cielo altiplánico.",
+      img: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      title: "5. Descenso al Valle Húmedo",
+      desc: "El relieve cambia paulatinamente hacia la vegetación densa. Cerramos los 11.6 km con la sensación inolvidable del viaje.",
+      img: "https://images.unsplash.com/photo-1511497584788-8767611136f6?auto=format&fit=crop&w=800&q=80"
+    }
+  ];
+
+  let current = 0;
+
+  function updateSlide() {
+    const s = steps[current];
+    document.getElementById('quick-title').innerText = s.title;
+    document.getElementById('quick-desc').innerText = s.desc;
+    document.getElementById('quick-img').src = s.img;
+    document.getElementById('quick-step-lbl').innerText = `PASO ${current + 1} DE 5`;
+
+    document.getElementById('btn-prev').disabled = current === 0;
+    document.getElementById('btn-next').innerText = current === steps.length - 1 ? 'Finalizar experiencia →' : 'Siguiente hito →';
+
+    const dots = document.querySelectorAll('.step-dot');
+    dots.forEach((dot, idx) => {
+      if (idx === current) dot.classList.add('active');
+      else dot.classList.remove('active');
+    });
+  }
+
+  function nextStep() {
+    if (current < steps.length - 1) {
+      current++;
+      updateSlide();
+    } else {
+      window.location.href = '/rutas/piloto';
+    }
+  }
+
+  function prevStep() {
+    if (current > 0) {
+      current--;
+      updateSlide();
+    }
+  }
+</script>

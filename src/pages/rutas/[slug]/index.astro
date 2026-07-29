@@ -1,0 +1,382 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { slug: 'piloto' } }
+  ];
+}
+
+const { slug } = Astro.params;
+---
+
+<BaseLayout title="Ruta Andina — Tramo Piloto | Exploración Completa | Aldo en Ruta" activeNav="Rutas">
+  <div class="route-interior-page">
+    <!-- Top Header Bar for Route -->
+    <div class="route-header-bar glass-panel">
+      <div class="container route-bar-content">
+        <div>
+          <a href="/rutas" class="back-link">← Volver al catálogo</a>
+          <h1 class="r-head-title title-serif">Ruta andina — Tramo piloto</h1>
+        </div>
+
+        <div class="route-quick-metrics">
+          <span><strong>11.6 km</strong> Distancia</span>
+          <span><strong>12 min</strong> Duración</span>
+          <span><strong>3,901 m</strong> Altitud máx.</span>
+          <span><strong>Andes</strong> Territorio</span>
+        </div>
+
+        <div class="route-mode-toggle">
+          <a href="/rutas/piloto/rapida" class="btn-outline-gold btn-sm">
+            ⚡ Modo Experiencia Rápida (3 min)
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Exploration Split Dashboard (Map + Video) -->
+    <div class="container dashboard-container">
+      <div class="dashboard-grid">
+        <!-- Left Column: Video Player & Milestones -->
+        <div class="video-col glass-panel">
+          <div class="video-player-box">
+            <iframe 
+              id="youtube-player"
+              src="https://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1&rel=0" 
+              title="Vídeo de la ruta piloto" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen>
+            </iframe>
+          </div>
+
+          <!-- Active Milestone Context Card -->
+          <div class="milestone-card glass-panel-gold">
+            <span class="badge badge-gold" id="m-badge">HITO 1 DE 5</span>
+            <h3 class="m-title title-serif" id="m-title">1. Inicio en la Selva Central</h3>
+            <p class="m-desc" id="m-desc">Punto de partida del recorrido. Condiciones óptimas de carretera y vistas abiertas hacia los valles.</p>
+
+            <div class="m-actions">
+              <button class="btn-outline-gold btn-sm" onclick="open360Modal('https://pannellum.org/images/cerro-toco.jpg', 'Vista 360° Hito 1')">
+                🌐 Ver Panorama 360° de este hito
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Interactive MapLibre Map -->
+        <div class="map-col glass-panel">
+          <div id="route-detail-map" class="route-detail-map"></div>
+
+          <!-- Elevation Profile Graph Overlay -->
+          <div class="altimetry-box glass-panel">
+            <h4 class="alt-title">Perfil de Altimetría (Elevación)</h4>
+            <div class="alt-chart">
+              <svg viewBox="0 0 400 60" class="alt-svg">
+                <path d="M0,50 Q100,30 200,10 T400,40 L400,60 L0,60 Z" fill="rgba(212, 175, 55, 0.2)" stroke="#D4AF37" stroke-width="2"/>
+                <circle cx="120" cy="22" r="5" fill="#D4AF37" id="alt-tracker"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 Milestones Timeline Navigation -->
+      <div class="milestones-bar glass-panel">
+        <h3 class="ms-bar-title title-serif">Hitos clave del recorrido</h3>
+        <div class="ms-grid">
+          <button class="ms-btn active" onclick="selectMilestone(1, '1. Inicio en la Selva Central', 'Km 0 · 800 m s.n.m.')">
+            <span class="ms-num">1</span>
+            <div>
+              <strong>Inicio</strong>
+              <span>Km 0</span>
+            </div>
+          </button>
+
+          <button class="ms-btn" onclick="selectMilestone(2, '2. Curvas del Mantaro', 'Km 28 · 1,450 m s.n.m.')">
+            <span class="ms-num">2</span>
+            <div>
+              <strong>Curvas</strong>
+              <span>Km 28</span>
+            </div>
+          </button>
+
+          <button class="ms-btn" onclick="selectMilestone(3, '3. Mirador de Acopalca', 'Km 64 · 2,900 m s.n.m.')">
+            <span class="ms-num">3</span>
+            <div>
+              <strong>Mirador</strong>
+              <span>Km 64</span>
+            </div>
+          </button>
+
+          <button class="ms-btn" onclick="selectMilestone(4, '4. Punto más alto', 'Km 96 · 4,350 m s.n.m.')">
+            <span class="ms-num">4</span>
+            <div>
+              <strong>Punto más alto</strong>
+              <span>Km 96</span>
+            </div>
+          </button>
+
+          <button class="ms-btn" onclick="selectMilestone(5, '5. Descenso a la sierra', 'Km 132 · 1,880 m s.n.m.')">
+            <span class="ms-num">5</span>
+            <div>
+              <strong>Descenso</strong>
+              <span>Km 132</span>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .route-interior-page {
+    padding-bottom: 5rem;
+  }
+
+  .route-header-bar {
+    padding: 1.25rem 0;
+    margin-bottom: 2rem;
+    border-radius: 0;
+    border-x: none;
+  }
+
+  .route-bar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .back-link {
+    font-size: 0.82rem;
+    color: var(--gold-primary);
+    font-weight: 500;
+  }
+
+  .r-head-title {
+    font-size: 1.6rem;
+    margin-top: 0.2rem;
+  }
+
+  .route-quick-metrics {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.85rem;
+    color: var(--text-sub);
+  }
+
+  .route-quick-metrics strong {
+    display: block;
+    color: var(--text-main);
+  }
+
+  .btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.82rem;
+  }
+
+  .dashboard-container {
+    margin-bottom: 2.5rem;
+  }
+
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.75rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .video-col, .map-col {
+    display: flex;
+    flex-direction: column;
+    height: 540px;
+    overflow: hidden;
+    padding: 1.25rem;
+  }
+
+  .video-player-box {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    margin-bottom: 1.25rem;
+  }
+
+  .video-player-box iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .milestone-card {
+    padding: 1.25rem;
+    flex: 1;
+  }
+
+  .m-title {
+    font-size: 1.25rem;
+    margin: 0.35rem 0;
+  }
+
+  .m-desc {
+    font-size: 0.85rem;
+    color: var(--text-sub);
+    line-height: 1.4;
+    margin-bottom: 1rem;
+  }
+
+  .route-detail-map {
+    width: 100%;
+    flex: 1;
+    border-radius: var(--radius-sm);
+    background: #090e17;
+  }
+
+  .altimetry-box {
+    margin-top: 1rem;
+    padding: 0.85rem;
+  }
+
+  .alt-title {
+    font-size: 0.78rem;
+    color: var(--text-sub);
+    margin-bottom: 0.35rem;
+  }
+
+  .alt-chart {
+    height: 50px;
+  }
+
+  .alt-svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .milestones-bar {
+    padding: 1.5rem 2rem;
+  }
+
+  .ms-bar-title {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+
+  .ms-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+  }
+
+  .ms-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-sub);
+    text-align: left;
+    transition: var(--transition-fast);
+  }
+
+  .ms-btn:hover, .ms-btn.active {
+    background: var(--gold-subtle);
+    border-color: var(--border-gold);
+    color: var(--gold-primary);
+  }
+
+  .ms-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+  }
+
+  .ms-btn.active .ms-num {
+    background: var(--gold-primary);
+    color: #000;
+  }
+
+  .ms-btn strong {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-main);
+  }
+
+  .ms-btn span {
+    font-size: 0.72rem;
+  }
+
+  @media (max-width: 1024px) {
+    .dashboard-grid { grid-template-columns: 1fr; }
+    .ms-grid { grid-template-columns: repeat(2, 1fr); }
+    .route-bar-content { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+
+<script>
+  import maplibregl from 'maplibre-gl';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const mapEl = document.getElementById('route-detail-map');
+    if (!mapEl) return;
+
+    const map = new maplibregl.Map({
+      container: 'route-detail-map',
+      style: 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json',
+      center: [-76.4000, -11.6000],
+      zoom: 9.5,
+      attributionControl: false
+    });
+
+    map.on('load', () => {
+      map.addSource('pilot-route', {
+        'type': 'geojson',
+        'data': {
+          'type': 'Feature',
+          'properties': {},
+          'geometry': {
+            'type': 'LineString',
+            'coordinates': [
+              [-77.0428, -12.0464],
+              [-76.7000, -11.8000],
+              [-76.4000, -11.6000],
+              [-76.0000, -11.4000],
+              [-75.5000, -11.1000]
+            ]
+          }
+        }
+      });
+
+      map.addLayer({
+        'id': 'pilot-route-line',
+        'type': 'line',
+        'source': 'pilot-route',
+        'paint': {
+          'line-color': '#D4AF37',
+          'line-width': 5,
+          'line-blur': 1
+        }
+      });
+    });
+  });
+
+  (window as any).selectMilestone = function(step: number, title: string, desc: string) {
+    const bEl = document.getElementById('m-badge');
+    const tEl = document.getElementById('m-title');
+    const dEl = document.getElementById('m-desc');
+    
+    if (bEl) bEl.innerText = `HITO ${step} DE 5`;
+    if (tEl) tEl.innerText = title;
+    if (dEl) dEl.innerText = desc;
+  };
+</script>
