@@ -16,19 +16,19 @@ const { slug } = Astro.params;
     <div class="route-header-bar glass-panel">
       <div class="container route-bar-content">
         <div>
-          <a href="/rutas" class="back-link">← Volver al catálogo</a>
+          <a href="/aldo-en-ruta/rutas" class="back-link">← Volver al catálogo</a>
           <h1 class="r-head-title title-serif">Ruta andina — Tramo piloto</h1>
         </div>
 
         <div class="route-quick-metrics">
-          <span><strong>11.6 km</strong> Distancia</span>
-          <span><strong>12 min</strong> Duración</span>
+          <span><strong>11.62 km</strong> Distancia real</span>
+          <span><strong>12 min 22 s</strong> Duración real</span>
           <span><strong>3,901 m</strong> Altitud máx.</span>
-          <span><strong>Andes</strong> Territorio</span>
+          <span><strong>Andes / Ayacucho</strong> Territorio</span>
         </div>
 
         <div class="route-mode-toggle">
-          <a href="/rutas/piloto/rapida" class="btn-outline-gold btn-sm">
+          <a href="/aldo-en-ruta/rutas/piloto/rapida" class="btn-outline-gold btn-sm">
             ⚡ Modo Experiencia Rápida (3 min)
           </a>
         </div>
@@ -53,8 +53,8 @@ const { slug } = Astro.params;
           <!-- Active Milestone Context Card -->
           <div class="milestone-card glass-panel-gold">
             <span class="badge badge-gold" id="m-badge">HITO 1 DE 5</span>
-            <h3 class="m-title title-serif" id="m-title">1. Inicio en la Selva Central</h3>
-            <p class="m-desc" id="m-desc">Punto de partida del recorrido. Condiciones óptimas de carretera y vistas abiertas hacia los valles.</p>
+            <h3 class="m-title title-serif" id="m-title">1. Inicio en los Andes de Ayacucho</h3>
+            <p class="m-desc" id="m-desc">Punto de partida a 3,651 m s.n.m. Asfalto sinuoso rodeado de montañas andinas.</p>
 
             <div class="m-actions">
               <button class="btn-outline-gold btn-sm" onclick="open360Modal('https://pannellum.org/images/cerro-toco.jpg', 'Vista 360° Hito 1')">
@@ -64,17 +64,25 @@ const { slug } = Astro.params;
           </div>
         </div>
 
-        <!-- Right Column: Interactive MapLibre Map -->
+        <!-- Right Column: Interactive MapLibre Map with 3D Animations -->
         <div class="map-col glass-panel">
+          <div class="map-toolbar">
+            <span class="map-status-badge">📡 GPX REAL: 744 PUNTOS GPS</span>
+            <button class="map-anim-btn" id="btn-animate-cam">🎥 Volar cámara 3D</button>
+          </div>
+
           <div id="route-detail-map" class="route-detail-map"></div>
 
           <!-- Elevation Profile Graph Overlay -->
           <div class="altimetry-box glass-panel">
-            <h4 class="alt-title">Perfil de Altimetría (Elevación)</h4>
+            <div class="alt-header">
+              <h4 class="alt-title">Perfil de Altimetría Real (3,650m – 3,901m)</h4>
+              <span id="alt-val" class="text-gold font-bold">3,651 m s.n.m.</span>
+            </div>
             <div class="alt-chart">
               <svg viewBox="0 0 400 60" class="alt-svg">
-                <path d="M0,50 Q100,30 200,10 T400,40 L400,60 L0,60 Z" fill="rgba(212, 175, 55, 0.2)" stroke="#D4AF37" stroke-width="2"/>
-                <circle cx="120" cy="22" r="5" fill="#D4AF37" id="alt-tracker"/>
+                <path id="alt-path" d="M0,45 Q50,40 100,25 T200,5 T300,20 T400,10 L400,60 L0,60 Z" fill="rgba(212, 175, 55, 0.25)" stroke="#D4AF37" stroke-width="2"/>
+                <circle cx="10" cy="42" r="5" fill="#D4AF37" id="alt-tracker"/>
               </svg>
             </div>
           </div>
@@ -83,9 +91,9 @@ const { slug } = Astro.params;
 
       <!-- 5 Milestones Timeline Navigation -->
       <div class="milestones-bar glass-panel">
-        <h3 class="ms-bar-title title-serif">Hitos clave del recorrido</h3>
+        <h3 class="ms-bar-title title-serif">Hitos clave del recorrido real</h3>
         <div class="ms-grid">
-          <button class="ms-btn active" onclick="selectMilestone(1, '1. Inicio en la Selva Central', 'Km 0 · 800 m s.n.m.')">
+          <button class="ms-btn active" onclick="selectMilestoneStep(1, '1. Inicio en los Andes', 'Km 0 · 3,651 m s.n.m.', [-74.2842, -13.2279])">
             <span class="ms-num">1</span>
             <div>
               <strong>Inicio</strong>
@@ -93,35 +101,35 @@ const { slug } = Astro.params;
             </div>
           </button>
 
-          <button class="ms-btn" onclick="selectMilestone(2, '2. Curvas del Mantaro', 'Km 28 · 1,450 m s.n.m.')">
+          <button class="ms-btn" onclick="selectMilestoneStep(2, '2. Tramo de Curvas Abiertas', 'Km 2.8 · 3,720 m s.n.m.', [-74.2920, -13.2400])">
             <span class="ms-num">2</span>
             <div>
               <strong>Curvas</strong>
-              <span>Km 28</span>
+              <span>Km 2.8</span>
             </div>
           </button>
 
-          <button class="ms-btn" onclick="selectMilestone(3, '3. Mirador de Acopalca', 'Km 64 · 2,900 m s.n.m.')">
+          <button class="ms-btn" onclick="selectMilestoneStep(3, '3. Mirador de la Quebrada', 'Km 5.4 · 3,810 m s.n.m.', [-74.3010, -13.2550])">
             <span class="ms-num">3</span>
             <div>
               <strong>Mirador</strong>
-              <span>Km 64</span>
+              <span>Km 5.4</span>
             </div>
           </button>
 
-          <button class="ms-btn" onclick="selectMilestone(4, '4. Punto más alto', 'Km 96 · 4,350 m s.n.m.')">
+          <button class="ms-btn" onclick="selectMilestoneStep(4, '4. Punto Culminante Abra', 'Km 8.9 · 3,901 m s.n.m.', [-74.3150, -13.2680])">
             <span class="ms-num">4</span>
             <div>
-              <strong>Punto más alto</strong>
-              <span>Km 96</span>
+              <strong>Punto Más Alto</strong>
+              <span>Km 8.9 (3,901m)</span>
             </div>
           </button>
 
-          <button class="ms-btn" onclick="selectMilestone(5, '5. Descenso a la sierra', 'Km 132 · 1,880 m s.n.m.')">
+          <button class="ms-btn" onclick="selectMilestoneStep(5, '5. Descenso al Valle', 'Km 11.6 · 3,761 m s.n.m.', [-74.3041, -13.2756])">
             <span class="ms-num">5</span>
             <div>
               <strong>Descenso</strong>
-              <span>Km 132</span>
+              <span>Km 11.6</span>
             </div>
           </button>
         </div>
@@ -131,9 +139,7 @@ const { slug } = Astro.params;
 </BaseLayout>
 
 <style>
-  .route-interior-page {
-    padding-bottom: 5rem;
-  }
+  .route-interior-page { padding-bottom: 5rem; }
 
   .route-header-bar {
     padding: 1.25rem 0;
@@ -149,16 +155,8 @@ const { slug } = Astro.params;
     gap: 1.5rem;
   }
 
-  .back-link {
-    font-size: 0.82rem;
-    color: var(--gold-primary);
-    font-weight: 500;
-  }
-
-  .r-head-title {
-    font-size: 1.6rem;
-    margin-top: 0.2rem;
-  }
+  .back-link { font-size: 0.82rem; color: var(--gold-primary); font-weight: 500; }
+  .r-head-title { font-size: 1.6rem; margin-top: 0.2rem; }
 
   .route-quick-metrics {
     display: flex;
@@ -167,23 +165,14 @@ const { slug } = Astro.params;
     color: var(--text-sub);
   }
 
-  .route-quick-metrics strong {
-    display: block;
-    color: var(--text-main);
-  }
+  .route-quick-metrics strong { display: block; color: var(--text-main); }
+  .btn-sm { padding: 0.5rem 1rem; font-size: 0.82rem; }
 
-  .btn-sm {
-    padding: 0.5rem 1rem;
-    font-size: 0.82rem;
-  }
-
-  .dashboard-container {
-    margin-bottom: 2.5rem;
-  }
+  .dashboard-container { margin-bottom: 2.5rem; }
 
   .dashboard-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1.1fr;
     gap: 1.75rem;
     margin-bottom: 1.75rem;
   }
@@ -191,7 +180,7 @@ const { slug } = Astro.params;
   .video-col, .map-col {
     display: flex;
     flex-direction: column;
-    height: 540px;
+    height: 560px;
     overflow: hidden;
     padding: 1.25rem;
   }
@@ -199,33 +188,39 @@ const { slug } = Astro.params;
   .video-player-box {
     position: relative;
     width: 100%;
-    height: 320px;
+    height: 300px;
     border-radius: var(--radius-sm);
     overflow: hidden;
-    margin-bottom: 1.25rem;
-  }
-
-  .video-player-box iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-  }
-
-  .milestone-card {
-    padding: 1.25rem;
-    flex: 1;
-  }
-
-  .m-title {
-    font-size: 1.25rem;
-    margin: 0.35rem 0;
-  }
-
-  .m-desc {
-    font-size: 0.85rem;
-    color: var(--text-sub);
-    line-height: 1.4;
     margin-bottom: 1rem;
+  }
+
+  .video-player-box iframe { width: 100%; height: 100%; border: none; }
+
+  .milestone-card { padding: 1.25rem; flex: 1; }
+  .m-title { font-size: 1.25rem; margin: 0.35rem 0; }
+  .m-desc { font-size: 0.85rem; color: var(--text-sub); line-height: 1.4; margin-bottom: 1rem; }
+
+  .map-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+  }
+
+  .map-status-badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--gold-primary);
+    letter-spacing: 0.05em;
+  }
+
+  .map-anim-btn {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: var(--radius-full);
+    background: var(--gold-subtle);
+    border: 1px solid var(--border-gold);
+    color: var(--gold-primary);
   }
 
   .route-detail-map {
@@ -235,34 +230,14 @@ const { slug } = Astro.params;
     background: #090e17;
   }
 
-  .altimetry-box {
-    margin-top: 1rem;
-    padding: 0.85rem;
-  }
+  .altimetry-box { margin-top: 0.85rem; padding: 0.75rem; }
+  .alt-header { display: flex; justify-content: space-between; align-items: center; }
+  .alt-title { font-size: 0.78rem; color: var(--text-sub); }
+  .alt-chart { height: 45px; margin-top: 0.3rem; }
+  .alt-svg { width: 100%; height: 100%; }
 
-  .alt-title {
-    font-size: 0.78rem;
-    color: var(--text-sub);
-    margin-bottom: 0.35rem;
-  }
-
-  .alt-chart {
-    height: 50px;
-  }
-
-  .alt-svg {
-    width: 100%;
-    height: 100%;
-  }
-
-  .milestones-bar {
-    padding: 1.5rem 2rem;
-  }
-
-  .ms-bar-title {
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
-  }
+  .milestones-bar { padding: 1.5rem 2rem; }
+  .ms-bar-title { font-size: 1.1rem; margin-bottom: 1rem; }
 
   .ms-grid {
     display: grid;
@@ -301,20 +276,9 @@ const { slug } = Astro.params;
     font-size: 0.85rem;
   }
 
-  .ms-btn.active .ms-num {
-    background: var(--gold-primary);
-    color: #000;
-  }
-
-  .ms-btn strong {
-    display: block;
-    font-size: 0.85rem;
-    color: var(--text-main);
-  }
-
-  .ms-btn span {
-    font-size: 0.72rem;
-  }
+  .ms-btn.active .ms-num { background: var(--gold-primary); color: #000; }
+  .ms-btn strong { display: block; font-size: 0.85rem; color: var(--text-main); }
+  .ms-btn span { font-size: 0.72rem; }
 
   @media (max-width: 1024px) {
     .dashboard-grid { grid-template-columns: 1fr; }
@@ -326,51 +290,109 @@ const { slug } = Astro.params;
 <script>
   import maplibregl from 'maplibre-gl';
 
+  let map: any = null;
+  let currentMarker: any = null;
+
   document.addEventListener('DOMContentLoaded', () => {
     const mapEl = document.getElementById('route-detail-map');
     if (!mapEl) return;
 
-    const map = new maplibregl.Map({
+    // Base URL helper
+    const baseUrl = import.meta.env.BASE_URL.endsWith('/')
+      ? import.meta.env.BASE_URL.slice(0, -1)
+      : import.meta.env.BASE_URL;
+
+    // Initialize MapLibre GL JS centered on the GPX coordinates in Peru
+    map = new maplibregl.Map({
       container: 'route-detail-map',
       style: 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json',
-      center: [-76.4000, -11.6000],
-      zoom: 9.5,
+      center: [-74.2950, -13.2500],
+      zoom: 12.2,
+      pitch: 50, // 3D Camera Tilt
+      bearing: -20, // Camera rotation
       attributionControl: false
     });
 
-    map.on('load', () => {
-      map.addSource('pilot-route', {
-        'type': 'geojson',
-        'data': {
-          'type': 'Feature',
-          'properties': {},
-          'geometry': {
-            'type': 'LineString',
-            'coordinates': [
-              [-77.0428, -12.0464],
-              [-76.7000, -11.8000],
-              [-76.4000, -11.6000],
-              [-76.0000, -11.4000],
-              [-75.5000, -11.1000]
-            ]
-          }
-        }
-      });
+    map.on('load', async () => {
+      try {
+        const response = await fetch(`${baseUrl}/routes/piloto/route.geojson`);
+        const geojson = await response.json();
 
-      map.addLayer({
-        'id': 'pilot-route-line',
-        'type': 'line',
-        'source': 'pilot-route',
-        'paint': {
-          'line-color': '#D4AF37',
-          'line-width': 5,
-          'line-blur': 1
+        map.addSource('real-gpx-route', {
+          'type': 'geojson',
+          'data': geojson
+        });
+
+        // Glowing outer route line
+        map.addLayer({
+          'id': 'real-gpx-glow',
+          'type': 'line',
+          'source': 'real-gpx-route',
+          'layout': { 'line-join': 'round', 'line-cap': 'round' },
+          'paint': {
+            'line-color': '#D4AF37',
+            'line-width': 8,
+            'line-opacity': 0.3,
+            'line-blur': 3
+          }
+        });
+
+        // Main sharp route line
+        map.addLayer({
+          'id': 'real-gpx-line',
+          'type': 'line',
+          'source': 'real-gpx-route',
+          'layout': { 'line-join': 'round', 'line-cap': 'round' },
+          'paint': {
+            'line-color': '#E5C158',
+            'line-width': 4
+          }
+        });
+
+        // Fit map bounds to the real GPX route
+        const coordinates = geojson.features[0].geometry.coordinates;
+        const bounds = coordinates.reduce((b: any, coord: any) => {
+          return b.extend(coord);
+        }, new maplibregl.LngLatBounds(coordinates[0], coordinates[0]));
+
+        map.fitBounds(bounds, { padding: 40, duration: 1500 });
+
+        // Add pulse vehicle marker on start point
+        const markerEl = document.createElement('div');
+        markerEl.className = 'pulse-vehicle-marker';
+        markerEl.style.width = '20px';
+        markerEl.style.height = '20px';
+        markerEl.style.backgroundColor = '#D4AF37';
+        markerEl.style.borderRadius = '50%';
+        markerEl.style.border = '3px solid #FFF';
+        markerEl.style.boxShadow = '0 0 18px #D4AF37';
+
+        currentMarker = new maplibregl.Marker(markerEl)
+          .setLngLat(coordinates[0])
+          .addTo(map);
+
+        // 3D Camera Fly Button handler
+        const animBtn = document.getElementById('btn-animate-cam');
+        if (animBtn) {
+          animBtn.addEventListener('click', () => {
+            map.flyTo({
+              center: coordinates[Math.floor(coordinates.length / 2)],
+              zoom: 13.5,
+              pitch: 65,
+              bearing: 90,
+              duration: 3500,
+              essential: true
+            });
+          });
         }
-      });
+
+      } catch (err) {
+        console.error('Error loading real GPX GeoJSON:', err);
+      }
     });
   });
 
-  (window as any).selectMilestone = function(step: number, title: string, desc: string) {
+  (window as any).selectMilestoneStep = function(step: number, title: string, desc: string, coords: [number, number]) {
     const bEl = document.getElementById('m-badge');
     const tEl = document.getElementById('m-title');
     const dEl = document.getElementById('m-desc');
@@ -378,5 +400,21 @@ const { slug } = Astro.params;
     if (bEl) bEl.innerText = `HITO ${step} DE 5`;
     if (tEl) tEl.innerText = title;
     if (dEl) dEl.innerText = desc;
+
+    // Smooth JS 3D FlyTo animation on milestone click
+    if (map && coords) {
+      map.flyTo({
+        center: coords,
+        zoom: 13.2,
+        pitch: 60,
+        bearing: step * 35,
+        duration: 2000,
+        essential: true
+      });
+
+      if (currentMarker) {
+        currentMarker.setLngLat(coords);
+      }
+    }
   };
 </script>
